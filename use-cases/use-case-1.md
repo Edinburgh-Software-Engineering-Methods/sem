@@ -1,4 +1,4 @@
-# Combined Use Case: Produce A report of Countries by Population in the world, continent and region
+# Use Case: Produce A report of Countries by Population in the world
 
 ## CHARACTERISTIC INFORMATION
 
