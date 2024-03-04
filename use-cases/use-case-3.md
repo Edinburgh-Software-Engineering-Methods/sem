@@ -3,7 +3,7 @@
 ## CHARACTERISTIC INFORMATION
 
 ## Goal in Context
-As a user, I want to produce reports of all the countries in a region organized by largest population to smallest so that local population analysis can be used. 
+As a *user*, I want *to produce reports of all the countries in a region organized by largest population to smallest* *so that local population analysis can be used.* 
 
 ## Scope
 Regional population analysis.
@@ -12,10 +12,11 @@ Regional population analysis.
 Primary task.
 
 ## Preconditions
+The user has access to global population data.
 The database has up-to-date population data for all countries in a region
 
 ## Success End Condition
-Reports are generated for all the countries in a region organized by population from largest to smallest.
+A report is generated for all the countries in a region organized by population from largest to smallest.
 
 ## Failed End Condition
 No reports are generated.
@@ -24,7 +25,7 @@ No reports are generated.
 User
 
 ## Trigger
-The user requests to produce population reports of all the countries in a region
+The user requests to produce a population report of all the countries in a region
 
 ## Main Success Scenario
 1. The user request the system to give the population data of all the countries in a region organized by largest population to smallest.
@@ -42,4 +43,4 @@ The user requests to produce population reports of all the countries in a region
 None.
 
 ## Schedule
-**Due Date:** Not Specified
+**Due Date:** Release 1.0

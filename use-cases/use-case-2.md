@@ -3,7 +3,7 @@
 ## CHARACTERISTIC INFORMATION
 
 ## Goal in Context
-As a user, I want to produce reports of all the countries in a continent organized by largest population to smallest so that population analysis  can be performed. 
+As a *user*, I want *to produce reports of all the countries in a continent organized by largest population to smallest* *so that population analysis  can be performed.* 
 
 ## Scope
 Continental population analysis.
@@ -12,10 +12,11 @@ Continental population analysis.
 Primary task.
 
 ## Preconditions
+The user has access to global population data.
 The database has up-to-date population data for all countries in a continent
 
 ## Success End Condition
-Reports are generated for all the countries in a continent organized by population from largest to smallest.
+A report is generated for all the countries in a continent organized by population from largest to smallest.
 
 ## Failed End Condition
 No reports are generated.
@@ -24,7 +25,7 @@ No reports are generated.
 User
 
 ## Trigger
-The user requests to produce population reports of all the countries in a continent 
+The user requests to produce a population report of all the countries in a continent 
 
 ## Main Success Scenario
 1. The user request the system to give the population data of all the countries in a continent organized by largest population to smallest.
@@ -42,4 +43,4 @@ The user requests to produce population reports of all the countries in a contin
 None.
 
 ## Schedule
-**Due Date:** Not Specified
+**Due Date:** Release 1.0

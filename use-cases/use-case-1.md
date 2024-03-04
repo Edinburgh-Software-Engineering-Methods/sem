@@ -3,7 +3,7 @@
 ## CHARACTERISTIC INFORMATION
 
 ## Goal in Context
-As a user, I want to produce reports of all the countries in the world organized by largest population to smallest so that population report can be analyzed efficiently. 
+As a *user*, I want *to produce reports of all the countries in the world organized by largest population to smallest* *so that population report can be analyzed efficiently.* 
 
 ## Scope
 Global population analysis.
@@ -12,10 +12,11 @@ Global population analysis.
 Primary task.
 
 ## Preconditions
+The user has access to global population data.
 The database has up-to-date population data for all countries in the world. 
 
 ## Success End Condition
-Reports are generated for all the countries in the world organized by population from largest to smallest.
+A report is generated for all the countries in the world organized by population from largest to smallest.
 
 ## Failed End Condition
 No reports are generated. 
@@ -24,7 +25,7 @@ No reports are generated.
 User
 
 ## Trigger
-The user requests to produce population reports of all the countries in world.  
+The user requests to produce population a report of all the countries in world.  
 
 ## Main Success Scenario
 1. The user request the system to give the population data of all the countries in the world organized by largest population to smallest.  
