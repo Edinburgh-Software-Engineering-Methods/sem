@@ -15,13 +15,12 @@ Global population data.
 Primary task.
 
 ### Preconditions
-
-The user has access to global population data. 
+ 
 The database has up-to-date population data for the top N countries in the world
 
 ### Success End Condition
 
-A report is generated for the top N populated countries in the world where N is provided by the user
+A report is generated for the top N populated countries in the world where N is provided by the user.
 
 ### Failed End Condition
 
@@ -33,7 +32,7 @@ User.
 
 ### Trigger
 
-The user requests to produce a population report of top N populated countries in the world. 
+The user requests the system for the population data of top N populated countries in the world.
 
 ## Main Success Scenario
 

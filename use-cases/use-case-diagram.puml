@@ -30,7 +30,13 @@ rectangle "Global Population System" {
     usecase UC23 as "Get population data of people, people living in cities, people not living in cities of each continent"
     usecase UC24 as "Get population data of people, people living in cities, people not living in cities of each region"
     usecase UC25 as "Get population data of people, people living in cities, people not living in cities of each country"
-    usecase UC26 as " Get the number of people who speak Chinese, English, Hindi, Spanish and Arabic by largest to smallest"
+    usecase UC26 as " Get access of the population data of the world"
+    usecase UC27 as " Get access of the population data of a continent"
+    usecase UC28 as " Get access of the population data of region"
+    usecase UC29 as " Get access of the population data of a country"
+    usecase UC30 as " Get access of the population data of a district"
+    usecase UC31 as " Get access of the population data of a city"
+    usecase UC32 as " Get the number of people who speak Chinese, English, Hindi, Spanish and Arabic by largest to smallest"
 
 
     usecase UCa as "Produce Population Data of all countries"
@@ -40,7 +46,8 @@ rectangle "Global Population System" {
     usecase UCe as "Produce population Data of capital cities"
     usecase UCf as "Produce Population Data of Top N populated cities"
     usecase UCg as "Produce population data of people, people living in cities, people not living in cities"
-    usecase UCh as "Produce number of people who speak Chinese, English. Hindi, Spanish and Arabic"
+    usecase UCh as "Receive Access to population data"
+    usecase UCi as "Produce number of people who speak Chinese, English. Hindi, Spanish and Arabic"
 
         User - UC1
         User - UC2
@@ -72,6 +79,12 @@ rectangle "Global Population System" {
         User - UC24
         User - UC25
         User - UC26
+        User - UC27
+        User - UC28
+        User - UC29
+        User - UC30
+        User - UC31
+        User - UC32
 
 
     UC1 ..> UCa :include
@@ -107,6 +120,14 @@ rectangle "Global Population System" {
     UC25 ..> UCg :include
 
     UC26 ..> UCh :include
+    UC27 ..> UCh :include
+    UC28 ..> UCh :include
+    UC29 ..> UCh :include
+    UC30 ..> UCh :include
+    UC31 ..> UCh :include
+
+
+    UC32 ..> UCi :include
 
 
     UC1 - Database
@@ -135,6 +156,13 @@ rectangle "Global Population System" {
     UC24 - Database
     UC25 - Database
     UC26 - Database
+    UC27 - Database
+    UC28 - Database
+    UC29 - Database
+    UC30 - Database
+    UC31 - Database
+    UC32 - Database
+
 
 
 

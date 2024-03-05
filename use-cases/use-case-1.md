@@ -2,32 +2,31 @@
 
 ## CHARACTERISTIC INFORMATION
 
-## Goal in Context
+### Goal in Context
 As a *user*, I want *to produce reports of all the countries in the world organized by largest population to smallest* *so that population report can be analyzed efficiently.* 
 
-## Scope
+### Scope
 Global population analysis.
 
-## Level
+### Level
 Primary task.
 
-## Preconditions
-The user has access to global population data.
+### Preconditions
 The database has up-to-date population data for all countries in the world. 
 
-## Success End Condition
+### Success End Condition
 A report is generated for all the countries in the world organized by population from largest to smallest.
 
-## Failed End Condition
+### Failed End Condition
 No reports are generated. 
 
-## Primary Actor
+### Primary Actor
 User
 
-## Trigger
-The user requests to produce population a report of all the countries in world.  
+### Trigger
+The user requests the system for population data of all the countries in world.  
 
-## Main Success Scenario
+### Main Success Scenario
 1. The user request the system to give the population data of all the countries in the world organized by largest population to smallest.  
 2. The system retrieves the latest population data for all the countries.  
 3. The system organizes the countries by population and sort them from largest to smallest.
@@ -36,8 +35,8 @@ The user requests to produce population a report of all the countries in world.
 
 ## Extensions
   
- **Data does not exist**
-  1. The system asks the user to choose correctly. 
+3. **Data does not exist**
+   1. The system asks the user to choose correctly. 
 
 ## Sub-variations
 None.

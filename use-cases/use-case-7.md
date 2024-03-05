@@ -16,7 +16,6 @@ Primary task.
 
 ### Preconditions
 
-The user has access to all population data.
 The database has up-to-date population data for all the cities in the world
 
 ### Success End Condition
@@ -33,7 +32,7 @@ User.
 
 ### Trigger
 
-The user requests to generate the report for all the cities in the world by largest population to smallest
+The user requests the system for the population data for all the cities in the world.
 
 ## Main Success Scenario
 
@@ -44,6 +43,9 @@ The user requests to generate the report for all the cities in the world by larg
 5. User receives the report.
 
 ## Extensions
+
+3. **Data does not exist**
+   1. The system asks the user to choose correctly.
 
 None.
 

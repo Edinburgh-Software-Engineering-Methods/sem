@@ -16,7 +16,6 @@ Primary task.
 
 ### Preconditions
 
-The user has access to all population data.
 The database has up-to-date population data for the top N populated countries in a continent.
 
 ### Success End Condition
@@ -33,7 +32,7 @@ User.
 
 ### Trigger
 
-The user requests to produce a population report of top N populated countries in a continent
+The user requests the system for the population data of top N populated countries in a continent
 
 ## Main Success Scenario
 
