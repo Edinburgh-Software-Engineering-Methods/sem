@@ -1,0 +1,170 @@
+@startuml
+
+actor User as "User"
+
+rectangle Database
+
+rectangle "Global Population System" {
+    usecase UC1 as "Get Population data of all countries in the world by largest to smallest"
+    usecase UC2 as "Get Population data of all countries in a continent by largest to smallest"
+    usecase UC3 as "Get Population data of all countries in a region by largest to smallest"
+    usecase UC4 as "Get population data of top N populated countries in the world"
+    usecase UC5 as "Get population data of top N populated countries in a continent"
+    usecase UC6 as "Get population data of top N populated countries in a region "
+    usecase UC7 as "Get population data of all cities in the world by largest to smallest"
+    usecase UC8 as "Get population data of all cities in a continent by largest to smallest"
+    usecase UC9 as "Get population data of all cities in a region by largest to smallest"
+    usecase UC10 as "Get population data of all cities in a country by largest to smallest"
+    usecase UC11 as "Get population data of all cities in a district by largest to smallest"
+    usecase UC12 as "Get population data of topN populated cities in the world"
+    usecase UC13 as "Get population data of topN populated cities in a continent"
+    usecase UC14 as "Get population data of topN populated cities in a region"
+    usecase UC15 as "Get population data of topN populated cities in a country"
+    usecase UC16 as "Get population data of topN populated cities in a district"
+    usecase UC17 as "Get population data of all capital cities in the world by largest to smallest"
+    usecase UC18 as "Get population data of all capital cities in a continent by largest to smallest"
+    usecase UC19 as "Get population data of all capital cities in a region by largest to smallest"
+    usecase UC20 as "Get population data of Top N populated capital cities in the world"
+    usecase UC21 as "Get population data of Top N populated capital cities in a continent"
+    usecase UC22 as "Get population data of Top N populated capital cities in a region"
+    usecase UC23 as "Get population data of people, people living in cities, people not living in cities of each continent"
+    usecase UC24 as "Get population data of people, people living in cities, people not living in cities of each region"
+    usecase UC25 as "Get population data of people, people living in cities, people not living in cities of each country"
+    usecase UC26 as " Get access of the population data of the world"
+    usecase UC27 as " Get access of the population data of a continent"
+    usecase UC28 as " Get access of the population data of region"
+    usecase UC29 as " Get access of the population data of a country"
+    usecase UC30 as " Get access of the population data of a district"
+    usecase UC31 as " Get access of the population data of a city"
+    usecase UC32 as " Get the number of people who speak Chinese, English, Hindi, Spanish and Arabic by largest to smallest"
+
+
+    usecase UCa as "Produce Population Data of all countries"
+    usecase UCb as "Produce Population Data of Top N populated countries"
+    usecase UCc as "Produce Population Data of all cities"
+    usecase UCd as "Produce Population Data of topN populated cities"
+    usecase UCe as "Produce population Data of capital cities"
+    usecase UCf as "Produce Population Data of Top N populated cities"
+    usecase UCg as "Produce population data of people, people living in cities, people not living in cities"
+    usecase UCh as "Receive Access to population data"
+    usecase UCi as "Produce number of people who speak Chinese, English. Hindi, Spanish and Arabic"
+
+        User - UC1
+        User - UC2
+        User - UC3
+        User - UC4
+        User - UC5
+
+        User - UC6
+        User - UC7
+        User - UC8
+        User - UC9
+        User - UC10
+
+        User - UC11
+        User - UC12
+        User - UC13
+        User - UC14
+        User - UC15
+
+        User - UC16
+        User - UC17
+        User - UC18
+        User - UC19
+        User - UC20
+
+        User - UC21
+        User - UC22
+        User - UC23
+        User - UC24
+        User - UC25
+        User - UC26
+        User - UC27
+        User - UC28
+        User - UC29
+        User - UC30
+        User - UC31
+        User - UC32
+
+
+    UC1 ..> UCa :include
+    UC2 ..> UCa :include
+    UC3 ..> UCa :include
+
+    UC4 ..> UCb :include
+    UC5 ..> UCb :include
+    UC6 ..> UCb :include
+
+    UC7 ..> UCc :include
+    UC8 ..> UCc :include
+    UC9 ..> UCc :include
+    UC10 ..> UCc :include
+    UC11 ..> UCc :include
+
+    UC12 ..> UCd :include
+    UC13 ..> UCd :include
+    UC14 ..> UCd :include
+    UC15 ..> UCd :include
+    UC16 ..> UCd :include
+
+    UC17 ..> UCe :include
+    UC18 ..> UCe :include
+    UC19 ..> UCe :include
+
+    UC20 ..> UCf :include
+    UC21 ..> UCf :include
+    UC22 ..> UCf :include
+
+    UC23 ..> UCg :include
+    UC24 ..> UCg :include
+    UC25 ..> UCg :include
+
+    UC26 ..> UCh :include
+    UC27 ..> UCh :include
+    UC28 ..> UCh :include
+    UC29 ..> UCh :include
+    UC30 ..> UCh :include
+    UC31 ..> UCh :include
+
+
+    UC32 ..> UCi :include
+
+
+    UC1 - Database
+    UC2 - Database
+    UC3 - Database
+    UC4 - Database
+    UC5 - Database
+    UC6 - Database
+    UC7 - Database
+    UC8 - Database
+    UC9 - Database
+    UC10 - Database
+    UC11 - Database
+    UC12 - Database
+    UC13 - Database
+    UC14 - Database
+    UC15 - Database
+    UC16 - Database
+    UC17 - Database
+    UC18 - Database
+    UC19 - Database
+    UC20 - Database
+    UC21 - Database
+    UC22 - Database
+    UC23 - Database
+    UC24 - Database
+    UC25 - Database
+    UC26 - Database
+    UC27 - Database
+    UC28 - Database
+    UC29 - Database
+    UC30 - Database
+    UC31 - Database
+    UC32 - Database
+
+
+
+
+}
+@enduml
