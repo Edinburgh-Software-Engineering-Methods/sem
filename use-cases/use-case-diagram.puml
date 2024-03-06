@@ -8,46 +8,80 @@ rectangle "Global Population System" {
     usecase UC1 as "Get Population data of all countries in the world by largest to smallest"
     usecase UC2 as "Get Population data of all countries in a continent by largest to smallest"
     usecase UC3 as "Get Population data of all countries in a region by largest to smallest"
+
     usecase UC4 as "Get population data of top N populated countries in the world"
     usecase UC5 as "Get population data of top N populated countries in a continent"
     usecase UC6 as "Get population data of top N populated countries in a region "
+
     usecase UC7 as "Get population data of all cities in the world by largest to smallest"
     usecase UC8 as "Get population data of all cities in a continent by largest to smallest"
     usecase UC9 as "Get population data of all cities in a region by largest to smallest"
     usecase UC10 as "Get population data of all cities in a country by largest to smallest"
     usecase UC11 as "Get population data of all cities in a district by largest to smallest"
+
     usecase UC12 as "Get population data of topN populated cities in the world"
     usecase UC13 as "Get population data of topN populated cities in a continent"
     usecase UC14 as "Get population data of topN populated cities in a region"
     usecase UC15 as "Get population data of topN populated cities in a country"
     usecase UC16 as "Get population data of topN populated cities in a district"
+
     usecase UC17 as "Get population data of all capital cities in the world by largest to smallest"
     usecase UC18 as "Get population data of all capital cities in a continent by largest to smallest"
     usecase UC19 as "Get population data of all capital cities in a region by largest to smallest"
+
     usecase UC20 as "Get population data of Top N populated capital cities in the world"
     usecase UC21 as "Get population data of Top N populated capital cities in a continent"
     usecase UC22 as "Get population data of Top N populated capital cities in a region"
+
     usecase UC23 as "Get population data of people, people living in cities, people not living in cities of each continent"
     usecase UC24 as "Get population data of people, people living in cities, people not living in cities of each region"
     usecase UC25 as "Get population data of people, people living in cities, people not living in cities of each country"
+
     usecase UC26 as " Get access of the population data of the world"
     usecase UC27 as " Get access of the population data of a continent"
     usecase UC28 as " Get access of the population data of region"
     usecase UC29 as " Get access of the population data of a country"
     usecase UC30 as " Get access of the population data of a district"
     usecase UC31 as " Get access of the population data of a city"
-    usecase UC32 as " Get the number of people who speak Chinese, English, Hindi, Spanish and Arabic by largest to smallest"
+
+    usecase UC32 as " Get the number of people who speak Chinese, English, Hindi, Spanish and Arabic by largest to smallest including the percentage of the world population"
 
 
-    usecase UCa as "Produce Population Data of all countries"
-    usecase UCb as "Produce Population Data of Top N populated countries"
-    usecase UCc as "Produce Population Data of all cities"
-    usecase UCd as "Produce Population Data of topN populated cities"
-    usecase UCe as "Produce population Data of capital cities"
-    usecase UCf as "Produce Population Data of Top N populated cities"
-    usecase UCg as "Produce population data of people, people living in cities, people not living in cities"
-    usecase UCh as "Receive Access to population data"
-    usecase UCi as "Produce number of people who speak Chinese, English. Hindi, Spanish and Arabic"
+    usecase UCa as "Produce Population Data of all countries in the world"
+    usecase UCb as "Produce Population Data of all countries in a continent"
+    usecase UCc as "Produce Population Data of all countries in a region"
+
+    usecase UCd as "Produce Population Data of Top N populated countries in the world"
+    usecase UCe as "Produce Population Data of Top N populated countries in a continent"
+    usecase UCf as "Produce Population Data of Top N populated countries in a region"
+
+    usecase UCg as "Produce Population Data of all cities in the world"
+    usecase UCh as "Produce Population Data of all cities in a continent"
+    usecase UCi as "Produce Population Data of all cities in a region"
+    usecase UCj as "Produce Population Data of all cities in a country"
+    usecase UCk as "Produce Population Data of all cities in a district"
+
+    usecase UCl as "Produce Population Data of topN populated cities in the world"
+    usecase UCm as "Produce Population Data of topN populated cities in a continent"
+    usecase UCn as "Produce Population Data of topN populated cities in a region"
+    usecase UCo as "Produce Population Data of topN populated cities in a country"
+    usecase UCp as "Produce Population Data of topN populated cities in a district"
+
+    usecase UCq as "Produce population Data of capital cities in the world"
+    usecase UCr as "Produce population Data of capital cities in a continent"
+    usecase UCs as "Produce population Data of capital cities in a region"
+
+    usecase UCt as "Produce Population Data of Top N populated capital cities in the world"
+    usecase UCu as "Produce Population Data of Top N populated capital cities in a continent"
+    usecase UCv as "Produce Population Data of Top N populated capital cities in a region"
+
+    usecase UCw as "Produce population data of people, people living in cities, people not living in cities in a continent"
+    usecase UCx as "Produce population data of people, people living in cities, people not living in cities in a region"
+    usecase UCy as "Produce population data of people, people living in cities, people not living in cities in a country"
+
+    usecase UCz as "Receive Access to population data"
+
+    usecase UCla as "Produce number of people who speak Chinese, English. Hindi, Spanish and Arabic including the percentage of the world population"
 
         User - UC1
         User - UC2
@@ -88,46 +122,46 @@ rectangle "Global Population System" {
 
 
     UC1 ..> UCa :include
-    UC2 ..> UCa :include
-    UC3 ..> UCa :include
+    UC2 ..> UCb :include
+    UC3 ..> UCc :include
 
-    UC4 ..> UCb :include
-    UC5 ..> UCb :include
-    UC6 ..> UCb :include
+    UC4 ..> UCd :include
+    UC5 ..> UCe :include
+    UC6 ..> UCf :include
 
-    UC7 ..> UCc :include
-    UC8 ..> UCc :include
-    UC9 ..> UCc :include
-    UC10 ..> UCc :include
-    UC11 ..> UCc :include
+    UC7 ..> UCg :include
+    UC8 ..> UCh :include
+    UC9 ..> UCi :include
+    UC10 ..> UCj :include
+    UC11 ..> UCk :include
 
-    UC12 ..> UCd :include
-    UC13 ..> UCd :include
-    UC14 ..> UCd :include
-    UC15 ..> UCd :include
-    UC16 ..> UCd :include
+    UC12 ..> UCl :include
+    UC13 ..> UCm :include
+    UC14 ..> UCn :include
+    UC15 ..> UCo :include
+    UC16 ..> UCp :include
 
-    UC17 ..> UCe :include
-    UC18 ..> UCe :include
-    UC19 ..> UCe :include
+    UC17 ..> UCq :include
+    UC18 ..> UCr :include
+    UC19 ..> UCs :include
 
-    UC20 ..> UCf :include
-    UC21 ..> UCf :include
-    UC22 ..> UCf :include
+    UC20 ..> UCt :include
+    UC21 ..> UCu :include
+    UC22 ..> UCv :include
 
-    UC23 ..> UCg :include
-    UC24 ..> UCg :include
-    UC25 ..> UCg :include
+    UC23 ..> UCw :include
+    UC24 ..> UCx :include
+    UC25 ..> UCy :include
 
-    UC26 ..> UCh :include
-    UC27 ..> UCh :include
-    UC28 ..> UCh :include
-    UC29 ..> UCh :include
-    UC30 ..> UCh :include
-    UC31 ..> UCh :include
+    UC26 ..> UCz :include
+    UC27 ..> UCz :include
+    UC28 ..> UCz :include
+    UC29 ..> UCz :include
+    UC30 ..> UCz :include
+    UC31 ..> UCz :include
 
 
-    UC32 ..> UCi :include
+    UC32 ..> UCla :include
 
 
     UC1 - Database
