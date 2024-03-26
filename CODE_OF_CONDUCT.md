@@ -1,4 +1,7 @@
-# Contributor Covenant Code of Conduct
+Scrum Team GitHub Code of Conduct
+
+Purpose
+The purpose of this Code of Conduct is to ensure a positive and inclusive environment for all members of our Scrum team collaborating on GitHub. We strive to create a respectful and open space where everyone feels valued and can contribute effectively.
 
 ## Our Pledge
 
