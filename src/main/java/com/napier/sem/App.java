@@ -1,5 +1,6 @@
 package com.napier.sem;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class App {
 
@@ -54,40 +55,38 @@ public class App {
         }
     }
 
+   import java.util.ArrayList;
 
-    public Country getCountriesByPopulation() {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT Code, Name, Continent, Region, Population, Capital " +
-                            "FROM country " +
-                            "ORDER BY Population DESC"; // Order by population from largest to smallest
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new country instance if valid.
-            // Check one is returned
-            if (rset.next()) {
-                Country country = new Country();
-                country.code = rset.getString("Code");
-                country.name = rset.getString("Name");
-                country.continent = rset.getString("Continent");
-                country.region = rset.getString("Region");
-                country.population = rset.getInt("Population");
-                country.capital = rset.getString("Capital");
-               return country;
-            }
-
-            else
-                return null;
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get countries by population");
-            return null;
+public ArrayList<Country> getCountriesByPopulation() {
+    try {
+        // Create an SQL statement
+        Statement stmt = con.createStatement();
+        // Create string for SQL statement
+        String strSelect =
+                "SELECT Code, Name, Continent, Region, Population, Capital " +
+                "FROM country " +
+                "ORDER BY Population DESC"; // Order by population from largest to smallest
+        // Execute SQL statement
+        ResultSet rset = stmt.executeQuery(strSelect);
+        // Extract country information
+        ArrayList<Country> countries = new ArrayList<>();
+        while (rset.next()) {
+            Country country = new Country();
+            country.code = rset.getString("Code");
+            country.name = rset.getString("Name");
+            country.continent = rset.getString("Continent");
+            country.region = rset.getString("Region");
+            country.population = rset.getInt("Population");
+            country.capital = rset.getString("Capital");
+            countries.add(country);
         }
+        return countries;
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        System.out.println("Failed to get countries by population");
+        return null;
     }
+}     
 
     public void displayCountry(Country country) {
         if (country != null) {
