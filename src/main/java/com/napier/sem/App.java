@@ -55,8 +55,6 @@ public class App {
         }
     }
 
-   import java.util.ArrayList;
-
 public ArrayList<Country> getCountriesByPopulation() {
     try {
         // Create an SQL statement
