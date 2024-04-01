@@ -1,4 +1,5 @@
 package com.napier.sem;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -9,10 +10,10 @@ public class App {
         App a = new App();
 
         // Connect to database
-       a.connect();
+        a.connect();
 
         // Get countries by population
-        Country country = a.getCountriesByPopulation();
+        ArrayList<Country> country = a.getCountriesByPopulation();
 
         // Display country information
         a.displayCountry(country);
@@ -47,68 +48,67 @@ public class App {
             } catch (SQLException sqle) {
                 System.out.println("Failed to connect to database attempt " + i);
                 System.out.println(sqle.getMessage());
-            }
-            catch (InterruptedException ie)
-            {
+            } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen");
             }
         }
     }
 
-public ArrayList<Country> getCountriesByPopulation() {
-    try {
-        // Create an SQL statement
-        Statement stmt = con.createStatement();
-        // Create string for SQL statement
-        String strSelect =
-                "SELECT Code, Name, Continent, Region, Population, Capital " +
-                "FROM country " +
-                "ORDER BY Population DESC"; // Order by population from largest to smallest
-        // Execute SQL statement
-        ResultSet rset = stmt.executeQuery(strSelect);
-        // Extract country information
-        ArrayList<Country> countries = new ArrayList<>();
-        while (rset.next()) {
-            Country country = new Country();
-            country.code = rset.getString("Code");
-            country.name = rset.getString("Name");
-            country.continent = rset.getString("Continent");
-            country.region = rset.getString("Region");
-            country.population = rset.getInt("Population");
-            country.capital = rset.getString("Capital");
-            countries.add(country);
-        }
-        return countries;
-    } catch (Exception e) {
-        System.out.println(e.getMessage());
-        System.out.println("Failed to get countries by population");
-        return null;
-    }
-}     
-
-    public void displayCountry(Country country) {
-        if (country != null) {
-            System.out.println(
-                            "Code: " + country.code + "\n" + "Name: " + country.name + "\n" +
-                            "Continent: " + country.continent + "\n" +
-                            "Region: " + country.region + "\n" +
-                            "Population: " + country.population + "\n" +
-                            "Capital: " + country.capital + "\n"
-            );
+    public ArrayList<Country> getCountriesByPopulation() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, Continent, Region, Population, Capital " +
+                            "FROM country " +
+                            "ORDER BY Population DESC"; // Order by population from largest to smallest
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract country information
+            ArrayList<Country> countries = new ArrayList<>();
+            while (rset.next()) {
+                Country ctry = new Country();
+                ctry.code = rset.getString("Code");
+                ctry.name = rset.getString("Name");
+                ctry.continent = rset.getString("Continent");
+                ctry.region = rset.getString("Region");
+                ctry.population = rset.getInt("Population");
+                ctry.capital = rset.getString("Capital");
+                countries.add(ctry);
+            }
+            return countries;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries by population");
+            return null;
         }
     }
 
-    public void disconnect()
-    {
-        if (con!= null)
+    /**
+     * Prints a list of countries.
+     * @param country The country to print.
+     */
+    public void displayCountry(ArrayList<Country> country) {
+
+            // Print header
+            System.out.println(String.format("%-5s %-25s %-15s %-20s %-10s", "Code", "Name", "Continent", "Region", "Population"));
+            // Print country information
+        for (Country ctry: country)
         {
+            String ctry_String =
+                    String.format("%-5s %-25s %-15s %-20s %-10d",
+                            ctry.code, ctry.name, ctry.continent, ctry.region, ctry.population);
+            System.out.println(ctry_String);
+        }
+    }
+
+    public void disconnect() {
+        if (con != null) {
             try {
                 // Close connection
                 con.close();
-            }
-
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 System.out.println("Error closing connection to Database");
             }
         }
