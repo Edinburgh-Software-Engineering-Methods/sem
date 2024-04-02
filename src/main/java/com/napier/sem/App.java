@@ -18,8 +18,8 @@ public class App {
         // Display country information
         a.displayCountry(countriesByPopulation);
 
-        ArrayList<Country> countriesByRegion = a.getCountriesByRegion("");
-        System.out.println("All the countries in a region by population: ");
+        ArrayList<Country> countriesByRegion = a.getCountriesByRegion("North America");
+        System.out.println("All the countries in North America by population: ");
         a.displayCountry(countriesByRegion);
 
         // Disconnect from database
