@@ -13,10 +13,14 @@ public class App {
         a.connect();
 
         // Get countries by population
-        ArrayList<Country> country = a.getCountriesByPopulation();
-
+        ArrayList<Country> countriesByPopulation = a.getCountriesByPopulation();
+        System.out.println("All the countries in the world by population: ");
         // Display country information
-        a.displayCountry(country);
+        a.displayCountry(countriesByPopulation);
+
+        ArrayList<Country> countriesByRegion = a.getCountriesByRegion("");
+        System.out.println("All the countries in a region by population: ");
+        a.displayCountry(countriesByRegion);
 
         // Disconnect from database
         a.disconnect();
@@ -85,24 +89,42 @@ public class App {
         }
     }
 
+    public ArrayList<Country> getCountriesByRegion(String region) {
+        try {
+            Statement stmt = con.createStatement();
+            String strSelect = "SELECT Code, Name, Continent, Region, Population, Capital " +
+                    "FROM country " + "WHERE Region = '" + region + "' " + "ORDER BY Population DESC";
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<Country> countries = new ArrayList<>();
+            while (rset.next()) {
+                Country ctry = new Country();
+                ctry.code = rset.getString("Code");
+                ctry.name = rset.getString("Name");
+                ctry.continent = rset.getString("Continent");
+                ctry.region = rset.getString("Region");
+                ctry.population = rset.getInt("Population");
+                ctry.capital = rset.getString("Capital");
+                countries.add(ctry);
+            }
+            return countries;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries by region");
+            return null;
+        }
+    }
+
     /**
      * Prints a list of countries.
      * @param country The country to print.
      */
     public void displayCountry(ArrayList<Country> country) {
-
-            // Print header
-            System.out.println(String.format("%-5s %-25s %-15s %-20s %-10s", "Code", "Name", "Continent", "Region", "Population"));
-            // Print country information
-        for (Country ctry: country)
-        {
-            String ctry_String =
-                    String.format("%-5s %-25s %-15s %-20s %-10d",
-                            ctry.code, ctry.name, ctry.continent, ctry.region, ctry.population);
+        System.out.println(String.format("%-5s %-25s %-15s %-20s %-10s", "Code", "Name", "Continent", "Region", "Population"));
+        for (Country ctry : country) {
+            String ctry_String = String.format("%-5s %-25s %-15s %-20s %-10d", ctry.code, ctry.name, ctry.continent, ctry.region, ctry.population);
             System.out.println(ctry_String);
         }
     }
-
     public void disconnect() {
         if (con != null) {
             try {
