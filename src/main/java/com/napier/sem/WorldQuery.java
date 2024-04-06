@@ -40,4 +40,39 @@ public class WorldQuery {
             return null;
         }
     }
+
+    // Method to get top N populated countries in the world
+    public ArrayList<Country> getTopPopulatedCountries(int N) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, Continent, Region, Population, Capital " +
+                            "FROM country " +
+                            "ORDER BY Population DESC " +
+                            "LIMIT " + N; // Order by population and limit the result to N rows
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract country information
+            ArrayList<Country> topCountries = new ArrayList<>();
+            while (rset.next()) {
+                Country ctry = new Country();
+                ctry.code = rset.getString("Code");
+                ctry.name = rset.getString("Name");
+                ctry.continent = rset.getString("Continent");
+                ctry.region = rset.getString("Region");
+                ctry.population = rset.getInt("Population");
+                ctry.capital = rset.getString("Capital");
+                topCountries.add(ctry);
+            }
+            return topCountries;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get top populated countries");
+            return null;
+        }
+    }
+
+
 }

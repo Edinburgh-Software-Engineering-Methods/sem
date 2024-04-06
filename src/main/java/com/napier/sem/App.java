@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class App {
 
-    // main method for displaying countries list
     public static void main(String[] args) {
-        // Create new Application and connect to database
+        //Create new Application and connect to database
+
         App a = new App();
 
         if (args.length < 1) {
@@ -16,8 +16,28 @@ public class App {
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 
+        //connect with WorldQuery Class
+        WorldQuery worldQuery = new WorldQuery(a.con);
+        ArrayList<Country> topPopulatedCountries = worldQuery.getTopPopulatedCountries(10);
+        System.out.println("Top 10 Populated Countries in the World: ");
+        a.displayCountry(topPopulatedCountries);
+
+        // connect with ContinentQuery Class
+        ContinentQuery continentQuery = new ContinentQuery(a.con);
+        ArrayList<Country> topCountriesByContinent = continentQuery.getTopCountriesByContinent("Europe", 6);
+        System.out.println("Top 6 Populated Countries in Europe: ");
+        a.displayCountry(topCountriesByContinent);
+
+
+        // connect with RegionQuery Class
+        RegionQuery regionQuery = new RegionQuery(a.con);
+        ArrayList<Country> topCountriesByRegion = regionQuery.getTopCountriesByRegion("Southeast Asia", 3);
+        System.out.println("Top 3 Populated Countries in Southeast Asia: ");
+        a.displayCountry(topCountriesByRegion);
+
+
         // Get countries by population
-        ArrayList<Country> countriesByPopulation = a.getCountriesByPopulation();
+       /* ArrayList<Country> countriesByPopulation = a.getCountriesByPopulation();
         System.out.println("All the countries in the world by population: ");
         // Display country information
         a.displayCountry(countriesByPopulation);
@@ -28,7 +48,7 @@ public class App {
 
         ArrayList<Country> countriesByRegion = a.getCountriesByRegion("North America");
         System.out.println("All the countries in North America by population: ");
-        a.displayCountry(countriesByRegion);
+        a.displayCountry(countriesByRegion);*/
 
         // Disconnect from database
         a.disconnect();
@@ -73,25 +93,6 @@ public class App {
             }
         }
     }
-
-    //get all the countries in the world by population
-
-    public ArrayList<Country> getCountriesByPopulation() {
-        WorldQuery worldQuery = new WorldQuery(con);
-        return worldQuery.getCountriesByPopulation();
-    }
-
-    // get all the countries in a continent ordered by population
-    public ArrayList<Country> getCountriesByContinent(String continent) {
-        ContinentQuery continentQuery = new ContinentQuery(con);
-        return continentQuery.getCountriesByContinent(continent);
-    }
-    // get all the countries in a region ordered by population
-    public ArrayList<Country> getCountriesByRegion(String region) {
-        RegionQuery regionQuery = new RegionQuery(con);
-        return regionQuery.getCountriesByRegion(region);
-    }
-
     /**
      * Prints a list of countries.
      *
