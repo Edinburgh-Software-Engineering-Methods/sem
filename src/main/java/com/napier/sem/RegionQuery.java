@@ -36,8 +36,6 @@ public class RegionQuery {
 
     public ArrayList<Country> getTopCountriesByRegion(String region, int topN) {
         try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
                     "SELECT Code, Name, Continent, Region, Population, Capital " +
@@ -67,6 +65,31 @@ public class RegionQuery {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries by population in region");
+            return null;
+        }
+    }
+
+    public ArrayList<City> getCitiesByRegion(String region) {
+        try {
+            Statement stmt = con.createStatement();
+            String strSelect = "SELECT Name, CountryCode, District, Population " +
+                    "FROM city " +
+                    "WHERE CountryCode IN (SELECT Code FROM country WHERE Region = '" + region + "') " +
+                    "ORDER BY Population DESC";
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> cities = new ArrayList<>();
+            while (rset.next()) {
+                City cityData = new City();
+                cityData.name = rset.getString("Name");
+                cityData.country = rset.getString("CountryCode");
+                cityData.district = rset.getString("District");
+                cityData.population = rset.getInt("Population");
+                cities.add(cityData);
+            }
+            return cities;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get cities by region");
             return null;
         }
     }

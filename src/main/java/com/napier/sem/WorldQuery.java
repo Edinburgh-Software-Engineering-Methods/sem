@@ -74,5 +74,29 @@ public class WorldQuery {
         }
     }
 
-
+    //Method to get top Cities in the World
+    public ArrayList<City> getCitiesByPopulation() {
+        try {
+            Statement stmt = con.createStatement();
+            String strSelect =
+                    "SELECT Name, CountryCode, District, Population " +
+                            "FROM city " +
+                            "ORDER BY Population DESC"; // Order by population from largest to smallest
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> cities = new ArrayList<>();
+            while (rset.next()) {
+                City cityData = new City();
+                cityData.name = rset.getString("Name");
+                cityData.country = rset.getString("CountryCode");
+                cityData.district = rset.getString("District");
+                cityData.population = rset.getInt("Population");
+                cities.add(cityData);
+            }
+            return cities;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get cities by population");
+            return null;
+        }
+    }
 }

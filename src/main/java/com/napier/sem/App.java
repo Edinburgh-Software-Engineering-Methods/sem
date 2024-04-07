@@ -16,30 +16,41 @@ public class App {
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 
-        //connect with WorldQuery Class
+        //connect with WorldQuery, ContinentQuery and Region Query Classes
         WorldQuery worldQuery = new WorldQuery(a.con);
-        ArrayList<Country> topPopulatedCountries = worldQuery.getTopPopulatedCountries(10);
+        ContinentQuery continentQuery = new ContinentQuery(a.con);
+        RegionQuery regionQuery = new RegionQuery(a.con);
+
+        //Get Cities by Population in World, Continent and Region
+        ArrayList<City> citiesByPopulation = worldQuery.getCitiesByPopulation();
+        System.out.println("All cities in the world by population: ");
+        a.displayCity(citiesByPopulation);
+
+        ArrayList<City> citiesByContinent = continentQuery.getCitiesByContinent("Africa");
+        System.out.println("\nAll cities in Africa by population: ");
+        a.displayCity(citiesByContinent);
+
+        ArrayList<City> citiesByRegion =regionQuery.getCitiesByRegion("South America");
+        System.out.println("\nAll cities in South America by population: ");
+        a.displayCity(citiesByRegion);
+
+        // Get topN countries in World, Continent and Region
+        /*ArrayList<Country> topPopulatedCountries = worldQuery.getTopPopulatedCountries(10);
         System.out.println("Top 10 Populated Countries in the World: ");
         a.displayCountry(topPopulatedCountries);
 
-        // connect with ContinentQuery Class
-        ContinentQuery continentQuery = new ContinentQuery(a.con);
         ArrayList<Country> topCountriesByContinent = continentQuery.getTopCountriesByContinent("Europe", 6);
         System.out.println("Top 6 Populated Countries in Europe: ");
         a.displayCountry(topCountriesByContinent);
 
-
-        // connect with RegionQuery Class
-        RegionQuery regionQuery = new RegionQuery(a.con);
         ArrayList<Country> topCountriesByRegion = regionQuery.getTopCountriesByRegion("Southeast Asia", 3);
         System.out.println("Top 3 Populated Countries in Southeast Asia: ");
-        a.displayCountry(topCountriesByRegion);
+        a.displayCountry(topCountriesByRegion);*/
 
 
-        // Get countries by population
+        // Get countries by population in world, continent and region
        /* ArrayList<Country> countriesByPopulation = a.getCountriesByPopulation();
         System.out.println("All the countries in the world by population: ");
-        // Display country information
         a.displayCountry(countriesByPopulation);
 
         ArrayList<Country> countriesByContinent = a.getCountriesByContinent("Asia");
@@ -103,6 +114,20 @@ public class App {
         for (Country ctry : country) {
             String ctry_String = String.format("%-5s %-25s %-15s %-20s %-10d", ctry.code, ctry.name, ctry.continent, ctry.region, ctry.population);
             System.out.println(ctry_String);
+        }
+    }
+
+    /**
+     * Prints a list of cities.
+     *
+     * @param city The list of cities to print.
+     */
+    public void displayCity(ArrayList<City> city) {
+        System.out.println(String.format("%-35s %-35s %-20s %-15s", "Name", "Country", "District", "Population"));
+        for (City cityData : city) {
+            String cityString = String.format("%-35s %-35s %-20s %-15d",
+                    cityData.name, cityData.country, cityData.district, cityData.population);
+            System.out.println(cityString);
         }
     }
 
