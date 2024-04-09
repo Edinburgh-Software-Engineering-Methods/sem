@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class App {
 
     public static void main(String[] args) {
+
         //Create new Application and connect to database
 
         App a = new App();
@@ -16,12 +17,15 @@ public class App {
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 
-        //connect with WorldQuery, ContinentQuery and Region Query Classes
+        /* connect with WorldQuery, ContinentQuery, Region Query, DistrictQuery and CountryQuery Classes */
+
         WorldQuery worldQuery = new WorldQuery(a.con);
         ContinentQuery continentQuery = new ContinentQuery(a.con);
         RegionQuery regionQuery = new RegionQuery(a.con);
+        CountryQuery countryQuery = new CountryQuery(a.con);
+        DistrictQuery districtQuery = new DistrictQuery(a.con);
 
-        //Get Cities by Population in World, Continent and Region
+        //Get Cities by Population in World, Continent and Region, District and Country
         ArrayList<City> citiesByPopulation = worldQuery.getCitiesByPopulation();
         System.out.println("All cities in the world by population: ");
         a.displayCity(citiesByPopulation);
@@ -33,6 +37,14 @@ public class App {
         ArrayList<City> citiesByRegion =regionQuery.getCitiesByRegion("South America");
         System.out.println("\nAll cities in South America by population: ");
         a.displayCity(citiesByRegion);
+
+        ArrayList<City> citiesByCountry = countryQuery.getCitiesByCountry("GBR");
+        System.out.println("All cities in United Kingdom by population: ");
+        a.displayCity(citiesByCountry);
+
+        ArrayList<City> citiesByDistrict = districtQuery.getCitiesByDistrict("Texas");
+        System.out.println("All cities in Texas by population: ");
+        a.displayCity(citiesByDistrict);
 
         // Get topN countries in World, Continent and Region
         /*ArrayList<Country> topPopulatedCountries = worldQuery.getTopPopulatedCountries(10);
