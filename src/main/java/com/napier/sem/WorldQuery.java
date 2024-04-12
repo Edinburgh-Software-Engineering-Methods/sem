@@ -99,4 +99,34 @@ public class WorldQuery {
             return null;
         }
     }
+
+    public ArrayList<City> getTopNCitiesByPopulation(int N) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Name, CountryCode, District, Population " +
+                            "FROM city " +
+                            "ORDER BY Population DESC " +
+                            "LIMIT " + N; // Limit the result to the top N cities
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<>();
+            while (rset.next()) {
+                City cityData = new City();
+                cityData.name = rset.getString("Name");
+                cityData.country = rset.getString("CountryCode");
+                cityData.district = rset.getString("District");
+                cityData.population = rset.getInt("Population");
+                cities.add(cityData);
+            }
+            return cities;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get top " + N + " cities by population");
+            return null;
+        }
+    }
 }

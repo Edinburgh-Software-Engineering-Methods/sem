@@ -25,8 +25,30 @@ public class App {
         CountryQuery countryQuery = new CountryQuery(a.con);
         DistrictQuery districtQuery = new DistrictQuery(a.con);
 
+        // Get Top N cities in world, continent, region, country and district
+
+        ArrayList<City> topNCitiesByPopulation = worldQuery.getTopNCitiesByPopulation(10);
+        System.out.println("Top 10 Populated Cities in the World: ");
+        a.displayCity(topNCitiesByPopulation);
+
+       ArrayList<City> topCitiesByContinent = continentQuery.getTopCitiesByContinent("Asia" , 5);
+       System.out.println("Top 5 Cities in Asia");
+       a.displayCity(topCitiesByContinent);
+
+       ArrayList<City> topCitiesByRegion = regionQuery.getTopCitiesByRegion("Eastern Europe" , 5);
+       System.out.println("Top 5 Cities in Eastern Europe");
+       a.displayCity(topCitiesByRegion);
+
+       ArrayList<City> topCitiesByCountry = countryQuery.getTopCitiesByCountry("USA" , 7);
+       System.out.println("Top 7 Cities in USA");
+       a.displayCity(topCitiesByCountry);
+
+       ArrayList<City> topCitiesByDistrict = districtQuery.getTopCitiesByDistrict("Florida" , 3);
+       System.out.println("Top 3 Cities in Florida");
+       a.displayCity(topCitiesByDistrict);
+
         //Get Cities by Population in World, Continent and Region, District and Country
-        ArrayList<City> citiesByPopulation = worldQuery.getCitiesByPopulation();
+       /* ArrayList<City> citiesByPopulation = worldQuery.getCitiesByPopulation();
         System.out.println("All cities in the world by population: ");
         a.displayCity(citiesByPopulation);
 
@@ -44,7 +66,7 @@ public class App {
 
         ArrayList<City> citiesByDistrict = districtQuery.getCitiesByDistrict("Texas");
         System.out.println("All cities in Texas by population: ");
-        a.displayCity(citiesByDistrict);
+        a.displayCity(citiesByDistrict);*/
 
         // Get topN countries in World, Continent and Region
         /*ArrayList<Country> topPopulatedCountries = worldQuery.getTopPopulatedCountries(10);

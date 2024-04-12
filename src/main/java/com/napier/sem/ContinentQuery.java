@@ -93,6 +93,37 @@ public class ContinentQuery {
             return null;
         }
     }
+
+    public ArrayList<City> getTopCitiesByContinent(String continent, int N) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Name, CountryCode, District, Population " +
+                            "FROM city " +
+                            "WHERE CountryCode IN (SELECT Code FROM country WHERE Continent = '" + continent + "') " +
+                            "ORDER BY Population DESC " +
+                            "LIMIT " + N;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<>();
+            while (rset.next()) {
+                City cityData = new City();
+                cityData.name = rset.getString("Name");
+                cityData.country = rset.getString("CountryCode");
+                cityData.district = rset.getString("District");
+                cityData.population = rset.getInt("Population");
+                cities.add(cityData);
+            }
+            return cities;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get top " + N + " cities by population in " + continent);
+            return null;
+        }
+    }
 }
 
 
