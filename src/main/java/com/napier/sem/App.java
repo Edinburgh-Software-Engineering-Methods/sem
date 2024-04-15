@@ -17,7 +17,7 @@ public class App {
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 
-        /* connect with WorldQuery, ContinentQuery, Region Query, DistrictQuery and CountryQuery Classes */
+        //connect with WorldQuery, ContinentQuery, Region Query, DistrictQuery and CountryQuery Classes
 
         WorldQuery worldQuery = new WorldQuery(a.con);
         ContinentQuery continentQuery = new ContinentQuery(a.con);
@@ -25,9 +25,20 @@ public class App {
         CountryQuery countryQuery = new CountryQuery(a.con);
         DistrictQuery districtQuery = new DistrictQuery(a.con);
 
-        // Get Top N cities in world, continent, region, country and district
+        ArrayList<Country> capitalCitiesByPopulation = worldQuery.getCapitalCitiesByPopulation();
+        System.out.println("All Capital Cities in the world:  ");
+        a.displayCapitalCity(capitalCitiesByPopulation);
 
-        ArrayList<City> topNCitiesByPopulation = worldQuery.getTopNCitiesByPopulation(10);
+        ArrayList<Country> capitalCitiesByContinent = continentQuery.getCapitalCitiesByContient("Europe");
+        System.out.println("All Capital Cities in Europe");
+        a.displayCapitalCity(capitalCitiesByContinent);
+
+        ArrayList<Country> capitalCitiesByRegion = regionQuery.getCapitalCitiesByRegion("Eastern Africa");
+        System.out.println("All Capital Cities in Eastern Africa");
+        a.displayCapitalCity(capitalCitiesByRegion);
+
+        // Get Top N cities in world, continent, region, country and district
+       /* ArrayList<City> topNCitiesByPopulation = worldQuery.getTopNCitiesByPopulation(10);
         System.out.println("Top 10 Populated Cities in the World: ");
         a.displayCity(topNCitiesByPopulation);
 
@@ -45,7 +56,7 @@ public class App {
 
        ArrayList<City> topCitiesByDistrict = districtQuery.getTopCitiesByDistrict("Florida" , 3);
        System.out.println("Top 3 Cities in Florida");
-       a.displayCity(topCitiesByDistrict);
+       a.displayCity(topCitiesByDistrict);*/
 
         //Get Cities by Population in World, Continent and Region, District and Country
        /* ArrayList<City> citiesByPopulation = worldQuery.getCitiesByPopulation();
@@ -83,17 +94,17 @@ public class App {
 
 
         // Get countries by population in world, continent and region
-       /* ArrayList<Country> countriesByPopulation = a.getCountriesByPopulation();
+       /* ArrayList<Country> countriesByPopulation = worldQuery.getCountriesByPopulation();
         System.out.println("All the countries in the world by population: ");
         a.displayCountry(countriesByPopulation);
 
-        ArrayList<Country> countriesByContinent = a.getCountriesByContinent("Asia");
+        ArrayList<Country> countriesByContinent = continentQuery.getCountriesByContinent("Asia");
         System.out.println("All the countries in Asia by population: ");
         a.displayCountry(countriesByContinent);
 
-        ArrayList<Country> countriesByRegion = a.getCountriesByRegion("North America");
+        ArrayList<Country> countriesByRegion = regionQuery.getCountriesByRegion("North America");
         System.out.println("All the countries in North America by population: ");
-        a.displayCountry(countriesByRegion);*/
+        a.displayCountry(countriesByRegion); */
 
         // Disconnect from database
         a.disconnect();
@@ -141,12 +152,12 @@ public class App {
     /**
      * Prints a list of countries.
      *
-     * @param country The country to print.
+     * @param countries The country to print.
      */
-    public void displayCountry(ArrayList<Country> country) {
-        System.out.println(String.format("%-5s %-25s %-15s %-20s %-10s", "Code", "Name", "Continent", "Region", "Population"));
-        for (Country ctry : country) {
-            String ctry_String = String.format("%-5s %-25s %-15s %-20s %-10d", ctry.code, ctry.name, ctry.continent, ctry.region, ctry.population);
+    public void displayCountry(ArrayList<Country> countries) {
+        System.out.println(String.format("%-5s %-25s %-15s %-20s %-15s %-10s", "Code", "Name", "Continent", "Region", "Capital", "Population"));
+        for (Country ctry : countries) {
+            String ctry_String = String.format("%-5s %-25s %-15s %-20s %-15s %-10d", ctry.code, ctry.name, ctry.continent, ctry.region, ctry.capital, ctry.population);
             System.out.println(ctry_String);
         }
     }
@@ -164,6 +175,20 @@ public class App {
             System.out.println(cityString);
         }
     }
+
+    /**
+     * Prints a list of cities.
+     *
+     * @param countries The list of cities to print.
+     */
+    public void displayCapitalCity(ArrayList<Country> countries) {
+        System.out.println(String.format("%-25s %-25s %-15s", "Capital", "Country", "Population"));
+        for (Country ctry : countries) {
+            String ctry_String = String.format("%-25s %-25s %-15d", ctry.capital, ctry.name, ctry.population);
+            System.out.println(ctry_String);
+        }
+    }
+
 
     // disconnect from database
     public void disconnect() {

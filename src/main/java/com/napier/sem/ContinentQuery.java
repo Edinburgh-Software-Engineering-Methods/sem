@@ -11,8 +11,11 @@ public class ContinentQuery {
     public ArrayList<Country> getCountriesByContinent(String continent) {
         try {
             Statement stmt = con.createStatement();
-            String strSelect = "SELECT Code, Name, Continent, Region, Population, Capital " +
-                    "FROM country " + "WHERE Continent = '" + continent + "' " + "ORDER BY Population DESC";
+            String strSelect = "SELECT c.Code, c.Name, c.Continent, c.Region, c.Population, ci.Name AS Capital " +
+                    "FROM country c " +
+                    "LEFT JOIN city ci ON c.Capital = ci.ID " +
+                    "WHERE c.Continent = '" + continent + "' " +
+                    "ORDER BY c.Population DESC";
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<Country> countries = new ArrayList<>();
             while (rset.next()) {
@@ -28,7 +31,7 @@ public class ContinentQuery {
             return countries;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get countries by region");
+            System.out.println("Failed to get countries by continent");
             return null;
         }
     }
@@ -121,6 +124,31 @@ public class ContinentQuery {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get top " + N + " cities by population in " + continent);
+            return null;
+        }
+    }
+
+    public ArrayList<Country> getCapitalCitiesByContient(String continent) {
+        try {
+            Statement stmt = con.createStatement();
+            String strSelect = "SELECT c.Name, c.Population, ci.Name AS Capital " +
+                    "FROM country c " +
+                    "LEFT JOIN city ci ON c.Capital = ci.ID " +
+                    "WHERE c.Continent = '" + continent + "' " +
+                    "ORDER BY c.Population DESC";
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<Country> countries = new ArrayList<>();
+            while (rset.next()) {
+                Country ctry = new Country();
+                ctry.name = rset.getString("Name");
+                ctry.population = rset.getInt("Population");
+                ctry.capital = rset.getString("Capital");
+                countries.add(ctry);
+            }
+            return countries;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries by continent");
             return null;
         }
     }
