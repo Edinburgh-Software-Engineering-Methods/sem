@@ -48,11 +48,11 @@ public class WorldQuery {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect =
-                    "SELECT Code, Name, Continent, Region, Population, Capital " +
-                            "FROM country " +
-                            "ORDER BY Population DESC " +
-                            "LIMIT " + N; // Order by population and limit the result to N rows
+            String strSelect = "SELECT c.Code, c.Name, c.Continent, c.Region, c.Population, ci.Name AS Capital " +
+                    "FROM country c " +
+                    "LEFT JOIN city ci ON c.Capital = ci.ID " +
+                    "ORDER BY c.Population DESC " +
+                    "LIMIT " + N; // Order by population and extract top N numbers
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract country information
@@ -78,17 +78,20 @@ public class WorldQuery {
     //Method to get top Cities in the World
     public ArrayList<City> getCitiesByPopulation() {
         try {
+            // Create an SQL statement
             Statement stmt = con.createStatement();
+            // Create string for SQL statement
             String strSelect =
-                    "SELECT Name, CountryCode, District, Population " +
-                            "FROM city " +
-                            "ORDER BY Population DESC"; // Order by population from largest to smallest
+                    "SELECT ci.Name AS City, c.Name AS Country, ci.District, ci.Population " +
+                            "FROM city ci " +
+                            "JOIN country c ON ci.CountryCode = c.Code " +
+                            "ORDER BY ci.Population DESC";// Order by population from largest to smallest
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<City> cities = new ArrayList<>();
             while (rset.next()) {
                 City cityData = new City();
-                cityData.name = rset.getString("Name");
-                cityData.country = rset.getString("CountryCode");
+                cityData.name = rset.getString("City");
+                cityData.country = rset.getString("Country");
                 cityData.district = rset.getString("District");
                 cityData.population = rset.getInt("Population");
                 cities.add(cityData);

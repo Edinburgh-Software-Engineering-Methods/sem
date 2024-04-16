@@ -25,7 +25,8 @@ public class App {
         CountryQuery countryQuery = new CountryQuery(a.con);
         DistrictQuery districtQuery = new DistrictQuery(a.con);
 
-        ArrayList<Country> capitalCitiesByPopulation = worldQuery.getCapitalCitiesByPopulation();
+        // Get Capital Cities in world, continent and region
+       ArrayList<Country> capitalCitiesByPopulation = worldQuery.getCapitalCitiesByPopulation();
         System.out.println("All Capital Cities in the world:  ");
         a.displayCapitalCity(capitalCitiesByPopulation);
 
@@ -59,28 +60,29 @@ public class App {
        a.displayCity(topCitiesByDistrict);*/
 
         //Get Cities by Population in World, Continent and Region, District and Country
-       /* ArrayList<City> citiesByPopulation = worldQuery.getCitiesByPopulation();
+        /* ArrayList<City> citiesByPopulation = worldQuery.getCitiesByPopulation();
         System.out.println("All cities in the world by population: ");
         a.displayCity(citiesByPopulation);
 
         ArrayList<City> citiesByContinent = continentQuery.getCitiesByContinent("Africa");
-        System.out.println("\nAll cities in Africa by population: ");
+        System.out.println("All cities in Africa by population: ");
         a.displayCity(citiesByContinent);
 
         ArrayList<City> citiesByRegion =regionQuery.getCitiesByRegion("South America");
-        System.out.println("\nAll cities in South America by population: ");
+        System.out.println("All cities in South America by population: ");
         a.displayCity(citiesByRegion);
 
-        ArrayList<City> citiesByCountry = countryQuery.getCitiesByCountry("GBR");
+        ArrayList<City> citiesByCountry = countryQuery.getCitiesByCountry("United Kingdom");
         System.out.println("All cities in United Kingdom by population: ");
         a.displayCity(citiesByCountry);
 
         ArrayList<City> citiesByDistrict = districtQuery.getCitiesByDistrict("Texas");
         System.out.println("All cities in Texas by population: ");
-        a.displayCity(citiesByDistrict);*/
+        a.displayCity(citiesByDistrict); */
 
         // Get topN countries in World, Continent and Region
-        /*ArrayList<Country> topPopulatedCountries = worldQuery.getTopPopulatedCountries(10);
+
+        /* ArrayList<Country> topPopulatedCountries = worldQuery.getTopPopulatedCountries(10);
         System.out.println("Top 10 Populated Countries in the World: ");
         a.displayCountry(topPopulatedCountries);
 
@@ -88,9 +90,9 @@ public class App {
         System.out.println("Top 6 Populated Countries in Europe: ");
         a.displayCountry(topCountriesByContinent);
 
-        ArrayList<Country> topCountriesByRegion = regionQuery.getTopCountriesByRegion("Southeast Asia", 3);
-        System.out.println("Top 3 Populated Countries in Southeast Asia: ");
-        a.displayCountry(topCountriesByRegion);*/
+        ArrayList<Country> topCountriesByRegion = regionQuery.getTopCountriesByRegion("Southeast Asia", 5);
+        System.out.println("Top 5 Populated Countries in Southeast Asia: ");
+        a.displayCountry(topCountriesByRegion); */
 
 
         // Get countries by population in world, continent and region
@@ -165,13 +167,12 @@ public class App {
     /**
      * Prints a list of cities.
      *
-     * @param city The list of cities to print.
+     * @param cities The list of cities to print.
      */
-    public void displayCity(ArrayList<City> city) {
-        System.out.println(String.format("%-35s %-35s %-20s %-15s", "Name", "Country", "District", "Population"));
-        for (City cityData : city) {
-            String cityString = String.format("%-35s %-35s %-20s %-15d",
-                    cityData.name, cityData.country, cityData.district, cityData.population);
+    public void displayCity(ArrayList<City> cities) {
+        System.out.println(String.format("%-25s %-25s %-15s %-10s", "City", "Country", "District", "Population"));
+        for (City city : cities) {
+            String cityString = String.format("%-25s %-25s %-15s %-10d", city.name, city.country, city.district, city.population);
             System.out.println(cityString);
         }
     }

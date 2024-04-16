@@ -9,20 +9,22 @@ public class CountryQuery {
         this.con = con;
 }
 
-    public ArrayList<City> getCitiesByCountry(String countryCode) {
+    public ArrayList<City> getCitiesByCountry(String country) {
         try {
-            PreparedStatement pstmt = con.prepareStatement(
-                    "SELECT Name, CountryCode, District, Population " +
-                            "FROM city " +
-                            "WHERE CountryCode = ? " +
-                            "ORDER BY Population DESC");
-            pstmt.setString(1, countryCode);
-            ResultSet rset = pstmt.executeQuery();
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT ci.Name AS City, c.Name AS Country, ci.District, ci.Population " +
+                    "FROM city ci " +
+                    "JOIN country c ON ci.CountryCode = c.Code " +
+                    "WHERE c.Name = '" + country + "' " +
+                    "ORDER BY ci.Population DESC";// Order by population from largest to smallest
+            ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<City> cities = new ArrayList<>();
             while (rset.next()) {
                 City cityData = new City();
-                cityData.name = rset.getString("Name");
-                cityData.country = rset.getString("CountryCode");
+                cityData.name = rset.getString("City");
+                cityData.country = rset.getString("Country");
                 cityData.district = rset.getString("District");
                 cityData.population = rset.getInt("Population");
                 cities.add(cityData);
@@ -30,7 +32,7 @@ public class CountryQuery {
             return cities;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get cities by country");
+            System.out.println("Failed to get cities by population in" + country);
             return null;
         }
     }

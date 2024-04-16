@@ -36,23 +36,23 @@ public class ContinentQuery {
         }
     }
 
-    public ArrayList<Country> getTopCountriesByContinent(String continent, int topN) {
+    public ArrayList<Country> getTopCountriesByContinent(String continent, int N) {
         try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect =
-                    "SELECT Code, Name, Continent, Region, Population, Capital " +
-                            "FROM country " +
-                            "WHERE Continent = ? " +
-                            "ORDER BY Population DESC " +
-                            "LIMIT ?";
-            // Prepare the statement
-            PreparedStatement pstmt = con.prepareStatement(strSelect);
-            pstmt.setString(1, continent);
-            pstmt.setInt(2, topN);
+            String strSelect = "SELECT c.Code, c.Name, c.Continent, c.Region, c.Population, ci.Name AS Capital " +
+                    "FROM country c " +
+                    "LEFT JOIN city ci ON c.Capital = ci.ID " +
+                    "WHERE c.Continent = '" + continent + "' " +
+                    "ORDER BY c.Population DESC " +
+                    "LIMIT " + N; // Order by population and extracting top N number
+
             // Execute SQL statement
-            ResultSet rset = pstmt.executeQuery();
+            ResultSet rset = stmt.executeQuery(strSelect);
+
             // Extract country information
-            ArrayList<Country> countries = new ArrayList<>();
+            ArrayList<Country> topCountries = new ArrayList<>();
             while (rset.next()) {
                 Country ctry = new Country();
                 ctry.code = rset.getString("Code");
@@ -61,30 +61,32 @@ public class ContinentQuery {
                 ctry.region = rset.getString("Region");
                 ctry.population = rset.getInt("Population");
                 ctry.capital = rset.getString("Capital");
-                countries.add(ctry);
+                topCountries.add(ctry);
             }
-            return countries;
+            return topCountries;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get countries by population in continent");
+            System.out.println("Failed to get countries by population in" + continent);
             return null;
         }
     }
 
     public ArrayList<City> getCitiesByContinent(String continent) {
         try {
+            // Create an SQL statement
             Statement stmt = con.createStatement();
-            String strSelect = "SELECT Name, CountryCode, District, Population " +
-                    "FROM city " +
-                    "WHERE CountryCode IN (SELECT Code FROM country WHERE Continent = '" + continent + "') " +
-                    "ORDER BY Population DESC";
+            // Create string for SQL statement
+            String strSelect = "SELECT ci.Name AS City, c.Name AS Country, ci.District, ci.Population " +
+                    "FROM city ci " +
+                    "JOIN country c ON ci.CountryCode = c.Code " +
+                    "WHERE c.Continent = '" + continent + "' " +
+                    "ORDER BY ci.Population DESC";// Order by population from largest to smallest
             ResultSet rset = stmt.executeQuery(strSelect);
-            //Extract city information
             ArrayList<City> cities = new ArrayList<>();
             while (rset.next()) {
                 City cityData = new City();
-                cityData.name = rset.getString("Name");
-                cityData.country = rset.getString("CountryCode");
+                cityData.name = rset.getString("City");
+                cityData.country = rset.getString("Country");
                 cityData.district = rset.getString("District");
                 cityData.population = rset.getInt("Population");
                 cities.add(cityData);
@@ -92,10 +94,11 @@ public class ContinentQuery {
             return cities;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get cities by continent");
+            System.out.println("Failed to get cities by population in" + continent);
             return null;
         }
     }
+
 
     public ArrayList<City> getTopCitiesByContinent(String continent, int N) {
         try {

@@ -11,19 +11,20 @@ public class DistrictQuery {
 
     public ArrayList<City> getCitiesByDistrict(String district) {
         try {
-            PreparedStatement pstmt = con.prepareStatement(
-                    "SELECT Name, CountryCode, District, Population " +
-                            "FROM city " +
-                            "WHERE District = ? " +
-                            "ORDER BY Population DESC"
-            );
-            pstmt.setString(1, district);
-            ResultSet rset = pstmt.executeQuery();
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT ci.Name AS City, c.Name AS Country, ci.District, ci.Population " +
+                    "FROM city ci " +
+                    "JOIN country c ON ci.CountryCode = c.Code " +
+                    "WHERE ci.District = '" + district + "' " +
+                    "ORDER BY ci.Population DESC";// Order by population from largest to smallest
+            ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<City> cities = new ArrayList<>();
             while (rset.next()) {
                 City cityData = new City();
-                cityData.name = rset.getString("Name");
-                cityData.country = rset.getString("CountryCode");
+                cityData.name = rset.getString("City");
+                cityData.country = rset.getString("Country");
                 cityData.district = rset.getString("District");
                 cityData.population = rset.getInt("Population");
                 cities.add(cityData);
@@ -31,7 +32,7 @@ public class DistrictQuery {
             return cities;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get cities by district");
+            System.out.println("Failed to get cities by population in" + district);
             return null;
         }
     }
