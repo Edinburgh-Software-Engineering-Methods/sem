@@ -110,21 +110,20 @@ public class WorldQuery {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Name, CountryCode, District, Population " +
-                            "FROM city " +
-                            "ORDER BY Population DESC " +
-                            "LIMIT " + N; // Limit the result to the top N cities
-            // Execute SQL statement
+                    "SELECT ci.Name AS City, c.Name AS Country, ci.District, ci.Population " +
+                    "FROM city ci " +
+                    "JOIN country c ON ci.CountryCode = c.Code " +
+                    "ORDER BY ci.Population DESC " +
+                    "LIMIT " + N;
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract city information
             ArrayList<City> cities = new ArrayList<>();
             while (rset.next()) {
-                City cityData = new City();
-                cityData.name = rset.getString("Name");
-                cityData.country = rset.getString("CountryCode");
-                cityData.district = rset.getString("District");
-                cityData.population = rset.getInt("Population");
-                cities.add(cityData);
+                City city = new City();
+                city.name = rset.getString("City");
+                city.country = rset.getString("Country");
+                city.district = rset.getString("District");
+                city.population = rset.getInt("Population");
+                cities.add(city);
             }
             return cities;
         } catch (Exception e) {

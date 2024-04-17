@@ -37,23 +37,23 @@ public class CountryQuery {
         }
     }
 
-    public ArrayList<City> getTopCitiesByCountry(String countryCode, int N) {
+    public ArrayList<City> getTopCitiesByCountry(String country, int N) {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
-            String strSelect =
-                    "SELECT Name, CountryCode, District, Population " +
-                            "FROM city " +
-                            "WHERE CountryCode = '" + countryCode + "' " +
-                            "ORDER BY Population DESC " +
-                            "LIMIT " + N;
+            String strSelect = "SELECT ci.Name AS City, c.Name AS Country, ci.District, ci.Population " +
+                    "FROM city ci " +
+                    "JOIN country c ON ci.CountryCode = c.Code " +
+                    "WHERE c.Name = '" + country + "' " +
+                    "ORDER BY ci.Population DESC " +
+                    "LIMIT " + N;
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract city information
             ArrayList<City> cities = new ArrayList<>();
             while (rset.next()) {
                 City cityData = new City();
-                cityData.name = rset.getString("Name");
-                cityData.country = rset.getString("CountryCode");
+                cityData.name = rset.getString("City");
+                cityData.country = rset.getString("Country");
                 cityData.district = rset.getString("District");
                 cityData.population = rset.getInt("Population");
                 cities.add(cityData);
@@ -61,7 +61,7 @@ public class CountryQuery {
             return cities;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get top " + N + " cities by population in " + countryCode);
+            System.out.println("Failed to get top " + N + " cities by population in " + country);
             return null;
         }
     }

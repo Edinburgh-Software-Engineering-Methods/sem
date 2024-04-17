@@ -26,7 +26,7 @@ public class App {
         DistrictQuery districtQuery = new DistrictQuery(a.con);
 
         // Get Capital Cities in world, continent and region
-       ArrayList<Country> capitalCitiesByPopulation = worldQuery.getCapitalCitiesByPopulation();
+        ArrayList<Country> capitalCitiesByPopulation = worldQuery.getCapitalCitiesByPopulation();
         System.out.println("All Capital Cities in the world:  ");
         a.displayCapitalCity(capitalCitiesByPopulation);
 
@@ -39,7 +39,7 @@ public class App {
         a.displayCapitalCity(capitalCitiesByRegion);
 
         // Get Top N cities in world, continent, region, country and district
-       /* ArrayList<City> topNCitiesByPopulation = worldQuery.getTopNCitiesByPopulation(10);
+        /* ArrayList<City> topNCitiesByPopulation = worldQuery.getTopNCitiesByPopulation(10);
         System.out.println("Top 10 Populated Cities in the World: ");
         a.displayCity(topNCitiesByPopulation);
 
@@ -51,13 +51,13 @@ public class App {
        System.out.println("Top 5 Cities in Eastern Europe");
        a.displayCity(topCitiesByRegion);
 
-       ArrayList<City> topCitiesByCountry = countryQuery.getTopCitiesByCountry("USA" , 7);
-       System.out.println("Top 7 Cities in USA");
+       ArrayList<City> topCitiesByCountry = countryQuery.getTopCitiesByCountry("India" , 7);
+       System.out.println("Top 7 Cities in India");
        a.displayCity(topCitiesByCountry);
 
-       ArrayList<City> topCitiesByDistrict = districtQuery.getTopCitiesByDistrict("Florida" , 3);
-       System.out.println("Top 3 Cities in Florida");
-       a.displayCity(topCitiesByDistrict);*/
+        ArrayList<City> topCitiesByDistrict = districtQuery.getTopCitiesByDistrict("England" , 6);
+        System.out.println("Top 6 Cities in England");
+        a.displayCity(topCitiesByDistrict); */
 
         //Get Cities by Population in World, Continent and Region, District and Country
         /* ArrayList<City> citiesByPopulation = worldQuery.getCitiesByPopulation();

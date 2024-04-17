@@ -105,20 +105,20 @@ public class ContinentQuery {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect =
-                    "SELECT Name, CountryCode, District, Population " +
-                            "FROM city " +
-                            "WHERE CountryCode IN (SELECT Code FROM country WHERE Continent = '" + continent + "') " +
-                            "ORDER BY Population DESC " +
-                            "LIMIT " + N;
+            String strSelect = "SELECT ci.Name AS City, c.Name AS Country, ci.District, ci.Population " +
+                    "FROM city ci " +
+                    "JOIN country c ON ci.CountryCode = c.Code " +
+                    "WHERE c.Continent = '" + continent + "' " +
+                    "ORDER BY ci.Population DESC " +
+                    "LIMIT " + N;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract city information
             ArrayList<City> cities = new ArrayList<>();
             while (rset.next()) {
                 City cityData = new City();
-                cityData.name = rset.getString("Name");
-                cityData.country = rset.getString("CountryCode");
+                cityData.name = rset.getString("City");
+                cityData.country = rset.getString("Country");
                 cityData.district = rset.getString("District");
                 cityData.population = rset.getInt("Population");
                 cities.add(cityData);

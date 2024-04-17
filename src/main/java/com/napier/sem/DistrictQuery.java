@@ -41,19 +41,19 @@ public class DistrictQuery {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
-            String strSelect =
-                    "SELECT Name, CountryCode, District, Population " +
-                            "FROM city " +
-                            "WHERE District = '" + district + "' " +
-                            "ORDER BY Population DESC " +
-                            "LIMIT " + N;
+            String strSelect = "SELECT ci.Name AS City, c.Name AS Country, ci.District, ci.Population " +
+                    "FROM city ci " +
+                    "JOIN country c ON ci.CountryCode = c.Code " +
+                    "WHERE ci.District = '" + district + "' " +
+                    "ORDER BY ci.Population DESC " +
+                    "LIMIT " + N;
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract city information
             ArrayList<City> cities = new ArrayList<>();
             while (rset.next()) {
                 City cityData = new City();
-                cityData.name = rset.getString("Name");
-                cityData.country = rset.getString("CountryCode");
+                cityData.name = rset.getString("City");
+                cityData.country = rset.getString("Country");
                 cityData.district = rset.getString("District");
                 cityData.population = rset.getInt("Population");
                 cities.add(cityData);
