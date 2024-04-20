@@ -18,4 +18,19 @@ public class Country {
 
     //capitals of the country
     public String capital;
+
+    public Country(String code, String name, String continent, String region, int population, String capital) {
+        this.code = code;
+        this.name = name;
+        this.continent = continent;
+        this.region = region;
+        this.population = population;
+        this.capital = capital;
+    }
+
+    public Country(String name, int population, String capital) {
+        this.name = name;
+        this.capital = capital;
+        this.population = population;
+    }
 }

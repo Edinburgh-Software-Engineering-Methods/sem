@@ -19,13 +19,15 @@ public class ContinentQuery {
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<Country> countries = new ArrayList<>();
             while (rset.next()) {
-                Country ctry = new Country();
-                ctry.code = rset.getString("Code");
-                ctry.name = rset.getString("Name");
-                ctry.continent = rset.getString("Continent");
-                ctry.region = rset.getString("Region");
-                ctry.population = rset.getInt("Population");
-                ctry.capital = rset.getString("Capital");
+                // Create a new instance of Country using the constructor with arguments
+                Country ctry = new Country(
+                        rset.getString("Code"),
+                        rset.getString("Name"),
+                        rset.getString("Continent"),
+                        rset.getString("Region"),
+                        rset.getInt("Population"),
+                        rset.getString("Capital")
+                );
                 countries.add(ctry);
             }
             return countries;
@@ -54,13 +56,15 @@ public class ContinentQuery {
             // Extract country information
             ArrayList<Country> topCountries = new ArrayList<>();
             while (rset.next()) {
-                Country ctry = new Country();
-                ctry.code = rset.getString("Code");
-                ctry.name = rset.getString("Name");
-                ctry.continent = rset.getString("Continent");
-                ctry.region = rset.getString("Region");
-                ctry.population = rset.getInt("Population");
-                ctry.capital = rset.getString("Capital");
+                // Create a new instance of Country using the constructor with arguments
+                Country ctry = new Country(
+                        rset.getString("Code"),
+                        rset.getString("Name"),
+                        rset.getString("Continent"),
+                        rset.getString("Region"),
+                        rset.getInt("Population"),
+                        rset.getString("Capital")
+                );
                 topCountries.add(ctry);
             }
             return topCountries;
@@ -84,11 +88,12 @@ public class ContinentQuery {
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<City> cities = new ArrayList<>();
             while (rset.next()) {
-                City cityData = new City();
-                cityData.name = rset.getString("City");
-                cityData.country = rset.getString("Country");
-                cityData.district = rset.getString("District");
-                cityData.population = rset.getInt("Population");
+                City cityData = new City(
+                        rset.getString("City"),
+                        rset.getString("Country"),
+                        rset.getString("District"),
+                        rset.getInt("Population")
+                );
                 cities.add(cityData);
             }
             return cities;
@@ -116,11 +121,12 @@ public class ContinentQuery {
             // Extract city information
             ArrayList<City> cities = new ArrayList<>();
             while (rset.next()) {
-                City cityData = new City();
-                cityData.name = rset.getString("City");
-                cityData.country = rset.getString("Country");
-                cityData.district = rset.getString("District");
-                cityData.population = rset.getInt("Population");
+                City cityData = new City(
+                        rset.getString("City"),
+                        rset.getString("Country"),
+                        rset.getString("District"),
+                        rset.getInt("Population")
+                );
                 cities.add(cityData);
             }
             return cities;
@@ -142,10 +148,12 @@ public class ContinentQuery {
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<Country> countries = new ArrayList<>();
             while (rset.next()) {
-                Country ctry = new Country();
-                ctry.name = rset.getString("Name");
-                ctry.population = rset.getInt("Population");
-                ctry.capital = rset.getString("Capital");
+                // Create a new instance of Country using the constructor with arguments
+                Country ctry = new Country(
+                        rset.getString("Name"),
+                        rset.getInt("Population"),
+                        rset.getString("Capital")
+                );
                 countries.add(ctry);
             }
             return countries;
