@@ -22,11 +22,12 @@ public class DistrictQuery {
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<City> cities = new ArrayList<>();
             while (rset.next()) {
-                City cityData = new City();
-                cityData.name = rset.getString("City");
-                cityData.country = rset.getString("Country");
-                cityData.district = rset.getString("District");
-                cityData.population = rset.getInt("Population");
+                City cityData = new City(
+                        rset.getString("City"),
+                        rset.getString("Country"),
+                        rset.getString("District"),
+                        rset.getInt("Population")
+                );
                 cities.add(cityData);
             }
             return cities;
@@ -51,11 +52,12 @@ public class DistrictQuery {
             // Extract city information
             ArrayList<City> cities = new ArrayList<>();
             while (rset.next()) {
-                City cityData = new City();
-                cityData.name = rset.getString("City");
-                cityData.country = rset.getString("Country");
-                cityData.district = rset.getString("District");
-                cityData.population = rset.getInt("Population");
+                City cityData = new City(
+                        rset.getString("City"),
+                        rset.getString("Country"),
+                        rset.getString("District"),
+                        rset.getInt("Population")
+                );
                 cities.add(cityData);
             }
             return cities;
