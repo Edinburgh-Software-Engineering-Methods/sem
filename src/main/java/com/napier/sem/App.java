@@ -25,6 +25,19 @@ public class App {
         CountryQuery countryQuery = new CountryQuery(a.con);
         DistrictQuery districtQuery = new DistrictQuery(a.con);
 
+        //Get Top N Capital Cities in world, continent and region
+        ArrayList<Country> topNCapitalCitiesByPopulation = worldQuery.getTopNCapitalCitiesByPopulation(5);
+        System.out.println("Top 5 Populated Capital Cities in the World");
+        a.displayCapitalCity(topNCapitalCitiesByPopulation);
+
+        ArrayList<Country> topCapitalCitiesByContinent = continentQuery.getTopCapitalCitiesByContient("Africa", 6);
+        System.out.println("Top 6 populated capital cities in Africa");
+        a.displayCapitalCity(topCapitalCitiesByContinent);
+
+        ArrayList<Country> topCapitalCitiesByRegion = regionQuery.getTopCapitalCitiesByRegion("Middle East" , 5);
+        System.out.println("Top 5 populated capital cities in Middle East");
+        a.displayCapitalCity(topCapitalCitiesByRegion);
+
         // Get Capital Cities in world, continent and region
         /* ArrayList<Country> capitalCitiesByPopulation = worldQuery.getCapitalCitiesByPopulation();
         System.out.println("All Capital Cities in the world:  ");
@@ -39,7 +52,7 @@ public class App {
         a.displayCapitalCity(capitalCitiesByRegion); */
 
         // Get Top N cities in world, continent, region, country and district
-        ArrayList<City> topNCitiesByPopulation = worldQuery.getTopNCitiesByPopulation(10);
+        /*ArrayList<City> topNCitiesByPopulation = worldQuery.getTopNCitiesByPopulation(10);
         System.out.println("Top 10 Populated Cities in the World: ");
         a.displayCity(topNCitiesByPopulation);
 
@@ -57,7 +70,7 @@ public class App {
 
         ArrayList<City> topCitiesByDistrict = districtQuery.getTopCitiesByDistrict("England", 6);
         System.out.println("Top 6 Cities in England");
-        a.displayCity(topCitiesByDistrict);
+        a.displayCity(topCitiesByDistrict);*/
 
         //Get Cities by Population in World, Continent and Region, District and Country
         /* ArrayList<City> citiesByPopulation = worldQuery.getCitiesByPopulation();
