@@ -163,6 +163,34 @@ public class ContinentQuery {
             return null;
         }
     }
+
+    public ArrayList<Country> getTopCapitalCitiesByContient(String continent, int N) {
+        try {
+            Statement stmt = con.createStatement();
+            String strSelect = "SELECT c.Name, c.Population, ci.Name AS Capital " +
+                    "FROM country c " +
+                    "LEFT JOIN city ci ON c.Capital = ci.ID " +
+                    "WHERE c.Continent = '" + continent + "' " +
+                    "ORDER BY c.Population DESC " +
+                    "LIMIT " + N;
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<Country> countries = new ArrayList<>();
+            while (rset.next()) {
+                // Create a new instance of Country using the constructor with arguments
+                Country ctry = new Country(
+                        rset.getString("Name"),
+                        rset.getInt("Population"),
+                        rset.getString("Capital")
+                );
+                countries.add(ctry);
+            }
+            return countries;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get top" + N + "cities in " + continent);
+            return null;
+        }
+    }
 }
 
 

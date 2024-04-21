@@ -1,4 +1,5 @@
 package com.napier.sem;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -116,10 +117,10 @@ public class WorldQuery {
             // Create string for SQL statement
             String strSelect =
                     "SELECT ci.Name AS City, c.Name AS Country, ci.District, ci.Population " +
-                    "FROM city ci " +
-                    "JOIN country c ON ci.CountryCode = c.Code " +
-                    "ORDER BY ci.Population DESC " +
-                    "LIMIT " + N;
+                            "FROM city ci " +
+                            "JOIN country c ON ci.CountryCode = c.Code " +
+                            "ORDER BY ci.Population DESC " +
+                            "LIMIT " + N;
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<City> cities = new ArrayList<>();
             while (rset.next()) {
@@ -166,6 +167,36 @@ public class WorldQuery {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get capital cities by population");
+            return null;
+        }
+    }
+
+    public ArrayList<Country> getTopNCapitalCitiesByPopulation(int N) {
+        try {
+            Statement stmt = con.createStatement();
+            String strSelect =
+                    "SELECT c.Name, c.Population, ci.Name AS Capital " +
+                            "FROM country c " +
+                            "LEFT JOIN city ci ON c.Capital = ci.ID " +
+                            "ORDER BY c.Population DESC " +
+                            "LIMIT " + N;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract country information
+            ArrayList<Country> countries = new ArrayList<>();
+            while (rset.next()) {
+                // Create a new instance of Country using the constructor with arguments
+                Country ctry = new Country(
+                        rset.getString("Name"),
+                        rset.getInt("Population"),
+                        rset.getString("Capital")
+                );
+                countries.add(ctry);
+            }
+            return countries;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get top populated capital cities in the world");
             return null;
         }
     }
