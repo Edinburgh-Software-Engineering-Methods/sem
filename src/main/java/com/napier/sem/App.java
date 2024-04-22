@@ -17,6 +17,10 @@ public class App {
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 
+        Department dept = a.getDepartment("Development");
+        ArrayList<Employee> employees = a.getSalariesByDepartment(dept);
+
+
 
         //Get Top N Capital Cities in world, continent and region
        /* ArrayList<Country> topNCapitalCitiesByPopulation = worldQuery.getTopNCapitalCitiesByPopulation(5);
