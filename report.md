@@ -19,4 +19,7 @@
 | 17  | As an organization manager, I want to produce a report of all the capital cities in the world organized by largest population to smallest so that demographics of capital cities can be examined globally. | Yes | <img src="images/issue17.PNG"> |
 | 18  | As an organization manager, I want to produce a report of all the capital cities in a continent organized by largest population to smallest so that I can analyze the capital cities in a continent. | Yes | <img src="images/issue18.PNG"> |
 | 19  | As an organization manager, I want to produce a report of all the capital cities in a region organized by largest to smallest so that I can analyze the regional capital cities. | Yes | <img src="images/issue19.PNG"> |
+| 20  | As an organization manager, I want to produce a report of the top N populated capital cities in the world where N is provided by me so that I can specify on the most populated capital cities in the world. | Yes | <img src="images/issue20.PNG"> |
+| 21  | As an organization manager, I want to produce a report of the top N populated capital cities in a continent where N is provided by me so that I can examine the most populated capital cities in a certain continent. | Yes | <img src="images/issue21.PNG"> |
+| 22  | As an organization manager, I want to produce a report of the top N populated capital cities in a region where N is provided by me so that I can identify the most populated capital cities within a specific region. | Yes | <img src="images/issue22.PNG"> |
 
