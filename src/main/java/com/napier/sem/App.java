@@ -19,62 +19,35 @@ public class App {
 
 
         //Get Top N Capital Cities in world, continent and region
-       /* ArrayList<Country> topNCapitalCitiesByPopulation = worldQuery.getTopNCapitalCitiesByPopulation(5);
-        System.out.println("Top 5 Populated Capital Cities in the World");
-        a.displayCapitalCity(topNCapitalCitiesByPopulation);
-
-        ArrayList<Country> topCapitalCitiesByContinent = continentQuery.getTopCapitalCitiesByContinent("Africa", 6);
-        System.out.println("Top 6 populated capital cities in Africa");
-        a.displayCapitalCity(topCapitalCitiesByContinent);
-
-        ArrayList<Country> topCapitalCitiesByRegion = regionQuery.getTopCapitalCitiesByRegion("Middle East" , 5);
-        System.out.println("Top 5 populated capital cities in Middle East");
-        a.displayCapitalCity(topCapitalCitiesByRegion);*/
+        a.TopCapitalCitiesInWorld(4);
+        a.TopCapitalCitiesInContinent("Africa" , 5);
+        a.TopCapitalCitiesInRegion("Middle East", 3);
 
         // Get Capital Cities in world, continent and region
-       // a.CapitalCitiesInWorld();
+       /*  a.CapitalCitiesInWorld();
+        a.CapitalCitiesInContinent("Asia");
+        a.CapitalCitiesInRegion("North America");*/
 
-        /* ArrayList<Country> capitalCitiesByContinent = continentQuery.getCapitalCitiesByContinent("Europe");
-        System.out.println("All Capital Cities in Europe");
-        a.displayCapitalCity(capitalCitiesByContinent);
-
-        ArrayList<Country> capitalCitiesByRegion = regionQuery.getCapitalCitiesByRegion("Eastern Africa");
-        System.out.println("All Capital Cities in Eastern Africa");
-        a.displayCapitalCity(capitalCitiesByRegion); */
 
         // Get Top N cities in world, continent, region, country and district
-        /*ArrayList<City> topNCitiesByPopulation = worldQuery.getTopNCitiesByPopulation(10);
-        System.out.println("Top 10 Populated Cities in the World: ");
-        a.displayCity(topNCitiesByPopulation);
+       /* a.TopCitiesInWorld(5);
+        a.TopCitiesInContinent("Europe", 3);
+        a.TopCitiesInRegion("South East Asia", 5);
+        a.TopCitiesInCountry("United States", 5);
+        a.TopCitiesInDistrict("Florida", 6);*/
 
-        ArrayList<City> topCitiesByContinent = continentQuery.getTopCitiesByContinent("Asia", 5);
-        System.out.println("Top 5 Cities in Asia");
-        a.displayCity(topCitiesByContinent);
-
-        ArrayList<City> topCitiesByRegion = regionQuery.getTopCitiesByRegion("Eastern Europe", 5);
-        System.out.println("Top 5 Cities in Eastern Europe");
-        a.displayCity(topCitiesByRegion);
-
-        ArrayList<City> topCitiesByCountry = countryQuery.getTopCitiesByCountry("India", 7);
-        System.out.println("Top 7 Cities in India");
-        a.displayCity(topCitiesByCountry);
-
-        ArrayList<City> topCitiesByDistrict = districtQuery.getTopCitiesByDistrict("England", 6);
-        System.out.println("Top 6 Cities in England");
-        a.displayCity(topCitiesByDistrict);*/
 
         //Get Cities by Population in World, Continent and Region, District and Country
-
-       // a.CitiesInWorld();
+        /* a.CitiesInWorld();
         a.CitiesInContinent("Africa");
         a.CitiesInRegion("South America");
         a.CitiesInCountry("Myanmar");
-        a.CitiesInDistrict("Texas");
+        a.CitiesInDistrict("Texas"); */
 
 
 
         // Get topN countries in World, Continent and Region
-        /*a.TopCountriesInWorld(5);
+        /* a.TopCountriesInWorld(5);
         a.TopCountriesByContinent("Asia" , 5);
         a.TopCountriesByRegion("North America", 5);*/
 
@@ -219,12 +192,91 @@ public class App {
 
     }
 
+    public void TopCitiesInWorld (int N)
+    {
+        WorldQuery worldQuery = new WorldQuery(con);
+        ArrayList<City> topNCitiesByPopulation = worldQuery.getTopNCitiesByPopulation(N);
+        System.out.println("Top" + N + " Populated Cities in the World: ");
+        displayCity(topNCitiesByPopulation);
+    }
+
+    public void TopCitiesInContinent (String continent, int N)
+    {
+        ContinentQuery continentQuery = new ContinentQuery(con);
+        ArrayList<City> topCitiesByContinent = continentQuery.getTopCitiesByContinent(continent, N);
+        System.out.println("Top" + N + " Cities in " + continent);
+        displayCity(topCitiesByContinent);
+    }
+
+    public void TopCitiesInRegion (String region, int N)
+    {
+        RegionQuery regionQuery = new RegionQuery(con);
+        ArrayList<City> topCitiesByRegion = regionQuery.getTopCitiesByRegion(region, N);
+        System.out.println("Top" + N + " Cities in " + region);
+        displayCity(topCitiesByRegion);
+    }
+
+    public void TopCitiesInCountry (String country, int N)
+    {
+        CountryQuery countryQuery = new CountryQuery(con);
+        ArrayList<City> topCitiesByCountry = countryQuery.getTopCitiesByCountry(country, N);
+        System.out.println("Top" + N + " Cities in " + country);
+        displayCity(topCitiesByCountry);
+    }
+
+    public void TopCitiesInDistrict (String district, int N)
+    {
+        DistrictQuery districtQuery = new DistrictQuery(con);
+        ArrayList<City> topCitiesByDistrict = districtQuery.getTopCitiesByDistrict(district, N);
+        System.out.println("Top" + N + " Cities in " + district);
+        displayCity(topCitiesByDistrict);
+
+    }
     public void CapitalCitiesInWorld() {
         WorldQuery worldQuery = new WorldQuery(con);
         ArrayList<Country> CapitalCitiesByPopulation = worldQuery.getCapitalCitiesByPopulation();
         System.out.println("Top populated capital cities in the World");
         displayCapitalCity(CapitalCitiesByPopulation);
     }
+
+    public void CapitalCitiesInContinent(String continent){
+        ContinentQuery continentQuery = new ContinentQuery(con);
+        ArrayList<Country> capitalCitiesByContinent = continentQuery.getCapitalCitiesByContinent(continent);
+        System.out.println("All Capital Cities in " + continent);
+        displayCapitalCity(capitalCitiesByContinent);
+    }
+
+    public void CapitalCitiesInRegion (String region){
+        RegionQuery regionQuery = new RegionQuery(con);
+        ArrayList<Country> capitalCitiesByRegion = regionQuery.getCapitalCitiesByRegion(region);
+        System.out.println("All Capital Cities in " + region);
+        displayCapitalCity(capitalCitiesByRegion);
+    }
+
+    public void TopCapitalCitiesInWorld (int N)
+    {
+        WorldQuery worldQuery = new WorldQuery(con);
+        ArrayList<Country> topNCapitalCitiesByPopulation = worldQuery.getTopNCapitalCitiesByPopulation(5);
+        System.out.println("Top " + N + " Populated Capital Cities in the World");
+        displayCapitalCity(topNCapitalCitiesByPopulation);
+    }
+
+    public void TopCapitalCitiesInContinent (String continent, int N)
+    {
+        ContinentQuery continentQuery = new ContinentQuery(con);
+        ArrayList<Country> topCapitalCitiesByContinent = continentQuery.getTopCapitalCitiesByContinent(continent, N);
+        System.out.println("Top " + N + " populated capital cities in " + continent);
+        displayCapitalCity(topCapitalCitiesByContinent);
+    }
+
+    public void TopCapitalCitiesInRegion (String region, int N)
+    {
+        RegionQuery regionQuery = new RegionQuery(con);
+        ArrayList<Country> topCapitalCitiesByRegion = regionQuery.getTopCapitalCitiesByRegion(region, N);
+        System.out.println("Top " + N + " populated capital cities in " + region);
+        displayCapitalCity(topCapitalCitiesByRegion);
+    }
+
 
     /**
      * Prints a list of countries.
