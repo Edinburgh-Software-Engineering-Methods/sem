@@ -137,7 +137,7 @@ public class ContinentQuery {
         }
     }
 
-    public ArrayList<Country> getCapitalCitiesByContient(String continent) {
+    public ArrayList<Country> getCapitalCitiesByContinent(String continent) {
         try {
             Statement stmt = con.createStatement();
             String strSelect = "SELECT c.Name, c.Population, ci.Name AS Capital " +
@@ -164,7 +164,7 @@ public class ContinentQuery {
         }
     }
 
-    public ArrayList<Country> getTopCapitalCitiesByContient(String continent, int N) {
+    public ArrayList<Country> getTopCapitalCitiesByContinent(String continent, int N) {
         try {
             Statement stmt = con.createStatement();
             String strSelect = "SELECT c.Name, c.Population, ci.Name AS Capital " +

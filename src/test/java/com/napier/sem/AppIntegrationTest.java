@@ -61,7 +61,7 @@ public class AppIntegrationTest {
 
     @Test
     void testCitiesInCountry () {
-        app.CitiesInCountry("England");
+        app.CitiesInCountry("India");
     }
 
     @Test
@@ -69,4 +69,59 @@ public class AppIntegrationTest {
         app.CitiesInDistrict("Texas");
     }
 
+    @Test
+    void testTopCitiesInWorld (){
+        app.TopCitiesInWorld(4);
+    }
+
+    @Test
+    void testTopCitiesInContinent (){
+        app.TopCitiesInContinent("Asia", 3);
+    }
+
+    @Test
+    void testTopCitiesInRegion (){
+        app.TopCitiesInRegion("South America", 3);
+    }
+    @Test
+    void testTopCitiesInCountry (){
+        app.TopCitiesInCountry("United Kingdom", 3);
+    }
+    @Test
+    void testTopCitiesInDistrict (){
+        app.TopCitiesInDistrict("Miami", 3);
+    }
+
+    @Test
+    void testCapitalCitiesInWorld (){
+        app.CapitalCitiesInWorld();
+    }
+
+    @Test
+    void testCapitalCitiesInContinent ()
+    {
+        app.CapitalCitiesInContinent("Asia");
+    }
+
+    @Test
+    void testCapitalCitiesInRegion (){
+        app.CapitalCitiesInRegion("North America");
+    }
+
+    @Test
+    void testTopCapitalCitiesInWorld (){
+        app.TopCapitalCitiesInWorld(3);
+    }
+
+    @Test
+    void testTopCapitalCitiesInContinent (){
+        app.TopCapitalCitiesInContinent("Europe", 4);
+    }
+
+    @Test
+    void testTopCapitalCitiesInRegion (){
+        app.TopCapitalCitiesInRegion("North America", 3);
+    }
 }
+
+
