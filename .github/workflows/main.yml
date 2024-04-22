@@ -1,9 +1,10 @@
-name: A workflow for my Hello World App
+name: A workflow for World Population System
 on: push
 
 jobs:
   unitTests:
     name: Unit Tests
+    needs: dockerCompose
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -20,7 +21,6 @@ jobs:
 
   dockerCompose:
     name: Build and Start Docker Compose
-    needs: unitTests
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout

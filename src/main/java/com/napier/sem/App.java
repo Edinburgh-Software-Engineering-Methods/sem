@@ -85,24 +85,15 @@ public class App {
         a.displayCity(citiesByDistrict); */
 
         // Get topN countries in World, Continent and Region
-
-        /* ArrayList<Country> topPopulatedCountries = worldQuery.getTopPopulatedCountries(10);
-        System.out.println("Top 10 Populated Countries in the World: ");
-        a.displayCountry(topPopulatedCountries);
-
-        ArrayList<Country> topCountriesByContinent = continentQuery.getTopCountriesByContinent("Europe", 6);
-        System.out.println("Top 6 Populated Countries in Europe: ");
-        a.displayCountry(topCountriesByContinent);
-
-        ArrayList<Country> topCountriesByRegion = regionQuery.getTopCountriesByRegion("Southeast Asia", 5);
-        System.out.println("Top 5 Populated Countries in Southeast Asia: ");
-        a.displayCountry(topCountriesByRegion); */
+        a.TopCountriesInWorld(5);
+        a.TopCountriesByContinent("Asia" , 5);
+        a.TopCountriesByRegion("North America", 5);
 
 
         // Get countries by population in world, continent and region
-        a.CountriesInWorld();
+        /* a.CountriesInWorld();
         a.CountriesByContinent("Asia");
-        a.CountriesByRegion("North America");
+        a.CountriesByRegion("North America"); */
 
 
         // Disconnect from database
@@ -171,6 +162,30 @@ public class App {
         ArrayList<Country> countriesByRegion = regionQuery.getCountriesByRegion(region);
         System.out.println("All the countries in " + region + " by population: ");
         displayCountry(countriesByRegion);
+    }
+
+    public void TopCountriesInWorld (int N)
+    {
+        WorldQuery worldQuery = new WorldQuery(con);
+        ArrayList<Country> topPopulatedCountries = worldQuery.getTopPopulatedCountries(N);
+        System.out.println("Top" + " Populated Countries in the World: ");
+        displayCountry(topPopulatedCountries);
+    }
+
+    public void TopCountriesByContinent (String continent, int N)
+    {
+        ContinentQuery continentQuery = new ContinentQuery(con);
+        ArrayList<Country> topCountriesByContinent = continentQuery.getTopCountriesByContinent(continent , N);
+        System.out.println("Top" + N + " Populated Countries in " +  continent);
+        displayCountry(topCountriesByContinent);
+    }
+
+    public void TopCountriesByRegion (String region, int N)
+    {
+        RegionQuery regionQuery = new RegionQuery(con);
+        ArrayList<Country> topCountriesByRegion = regionQuery.getTopCountriesByRegion(region, N);
+        System.out.println("Top" + N + " Populated Countries in " +  region);
+        displayCountry(topCountriesByRegion);
     }
 
     public void CapitalCitiesInWorld() {
