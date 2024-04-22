@@ -64,30 +64,20 @@ public class App {
         a.displayCity(topCitiesByDistrict);*/
 
         //Get Cities by Population in World, Continent and Region, District and Country
-        /* ArrayList<City> citiesByPopulation = worldQuery.getCitiesByPopulation();
-        System.out.println("All cities in the world by population: ");
-        a.displayCity(citiesByPopulation);
 
-        ArrayList<City> citiesByContinent = continentQuery.getCitiesByContinent("Africa");
-        System.out.println("All cities in Africa by population: ");
-        a.displayCity(citiesByContinent);
+       // a.CitiesInWorld();
+        a.CitiesInContinent("Africa");
+        a.CitiesInRegion("South America");
+        a.CitiesInCountry("Myanmar");
+        a.CitiesInDistrict("Texas");
 
-        ArrayList<City> citiesByRegion =regionQuery.getCitiesByRegion("South America");
-        System.out.println("All cities in South America by population: ");
-        a.displayCity(citiesByRegion);
 
-        ArrayList<City> citiesByCountry = countryQuery.getCitiesByCountry("United Kingdom");
-        System.out.println("All cities in United Kingdom by population: ");
-        a.displayCity(citiesByCountry);
 
-        ArrayList<City> citiesByDistrict = districtQuery.getCitiesByDistrict("Texas");
-        System.out.println("All cities in Texas by population: ");
-        a.displayCity(citiesByDistrict); */
 
         // Get topN countries in World, Continent and Region
-        a.TopCountriesInWorld(5);
+        /*a.TopCountriesInWorld(5);
         a.TopCountriesByContinent("Asia" , 5);
-        a.TopCountriesByRegion("North America", 5);
+        a.TopCountriesByRegion("North America", 5);*/
 
 
         // Get countries by population in world, continent and region
@@ -186,6 +176,48 @@ public class App {
         ArrayList<Country> topCountriesByRegion = regionQuery.getTopCountriesByRegion(region, N);
         System.out.println("Top" + N + " Populated Countries in " +  region);
         displayCountry(topCountriesByRegion);
+    }
+
+    public void CitiesInWorld ()
+    {
+        WorldQuery worldQuery = new WorldQuery(con);
+        ArrayList<City> citiesByPopulation = worldQuery.getCitiesByPopulation();
+        System.out.println("All cities in the world by population: ");
+        displayCity(citiesByPopulation);
+    }
+
+    public void CitiesInContinent (String continent)
+    {
+        ContinentQuery continentQuery = new ContinentQuery(con);
+        ArrayList<City> citiesByContinent = continentQuery.getCitiesByContinent(continent);
+        System.out.println("All cities in " + continent + " by population: ");
+        displayCity(citiesByContinent);
+
+    }
+
+    public void CitiesInRegion (String region)
+    {
+        RegionQuery regionQuery = new RegionQuery(con);
+        ArrayList<City> citiesByRegion =regionQuery.getCitiesByRegion(region);
+        System.out.println("All cities in " + region +" by population: ");
+        displayCity(citiesByRegion);
+    }
+
+    public void CitiesInCountry (String country)
+    {
+        CountryQuery countryQuery = new CountryQuery(con);
+        ArrayList<City> citiesByCountry = countryQuery.getCitiesByCountry(country);
+        System.out.println("All cities in " + country +" by population: ");
+        displayCity(citiesByCountry);
+    }
+
+    public void CitiesInDistrict (String district)
+    {
+        DistrictQuery districtQuery = new DistrictQuery(con);
+        ArrayList<City> citiesByDistrict = districtQuery.getCitiesByDistrict(district);
+        System.out.println("All cities in " + district + " by population: ");
+        displayCity(citiesByDistrict);
+
     }
 
     public void CapitalCitiesInWorld() {

@@ -4,7 +4,6 @@ on: push
 jobs:
   unitTests:
     name: Unit Tests
-    needs: dockerCompose
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
