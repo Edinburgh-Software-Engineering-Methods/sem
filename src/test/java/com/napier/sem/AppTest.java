@@ -43,4 +43,14 @@ public class AppTest {
         app.displayCountry(countries);
 
     }
+
+    @Test
+    public void testDisplayPopulation () {
+        ArrayList<Population> populations = new ArrayList<>();
+        populations.add(new Population ("Asia", 1908773, 24565376, 26474149));
+        populations.add(new Population ("North America", 322773, 67565376, 57888149));
+
+        App app = new App();
+        app.displayPopulation(populations);
+    }
 }

@@ -17,10 +17,15 @@ public class App {
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 
+        // Get population analysis by each continent, region and country
+        a.PopulationInContinents();
+        a.PopulationInRegions();
+        a.PopulationInCountries();
+
         //Get Top N Capital Cities in world, continent and region
-        a.TopCapitalCitiesInWorld(4);
+       /* a.TopCapitalCitiesInWorld(4);
         a.TopCapitalCitiesInContinent("Africa" , 5);
-        a.TopCapitalCitiesInRegion("Middle East", 3);
+        a.TopCapitalCitiesInRegion("Middle East", 3);*/
 
         // Get Capital Cities in world, continent and region
        /*  a.CapitalCitiesInWorld();
@@ -276,6 +281,26 @@ public class App {
         displayCapitalCity(topCapitalCitiesByRegion);
     }
 
+    public void PopulationInContinents () {
+        ContinentQuery continentQuery = new ContinentQuery(con);
+        ArrayList<Population> populationByContinent = continentQuery.getPopulationByContinent();
+        System.out.println("Population Analysis by each continents in the World");
+        displayPopulation(populationByContinent);
+    }
+
+    public void PopulationInRegions () {
+        RegionQuery regionQuery = new RegionQuery(con);
+        ArrayList<Population> populationByRegion = regionQuery.getPopulationByRegion();
+        System.out.println("Population Analysis by each regions in the World ");
+        displayPopulation(populationByRegion);
+    }
+
+    public void PopulationInCountries () {
+        CountryQuery countryQuery = new CountryQuery(con);
+        ArrayList<Population> populationByCountry = countryQuery.getPopulationByCountry();
+        System.out.println("Population Analysis of each countries in the World");
+        displayPopulation(populationByCountry);
+    }
 
     /**
      * Prints a list of countries.
@@ -283,7 +308,7 @@ public class App {
      * @param countries The country to print.
      */
     public void displayCountry(ArrayList<Country> countries) {
-        System.out.println(String.format("%-5s %-25s %-15s %-20s %-15s %-10s", "Code", "Name", "Continent", "Region", "Capital", "Population"));
+        System.out.printf("%-5s %-25s %-15s %-20s %-15s %-10s%n", "Code", "Name", "Continent", "Region", "Capital", "Population");
         for (Country ctry : countries) {
             String ctry_String = String.format("%-5s %-25s %-15s %-20s %-15s %-10d", ctry.code, ctry.name, ctry.continent, ctry.region, ctry.capital, ctry.population);
             System.out.println(ctry_String);
@@ -296,7 +321,7 @@ public class App {
      * @param cities The list of cities to print.
      */
     public void displayCity(ArrayList<City> cities) {
-        System.out.println(String.format("%-25s %-25s %-15s %-10s", "City", "Country", "District", "Population"));
+        System.out.printf("%-25s %-25s %-15s %-10s%n", "City", "Country", "District", "Population");
         for (City city : cities) {
             String cityString = String.format("%-25s %-25s %-15s %-10d", city.name, city.country, city.district, city.population);
             System.out.println(cityString);
@@ -309,10 +334,27 @@ public class App {
      * @param countries The list of cities to print.
      */
     public void displayCapitalCity(ArrayList<Country> countries) {
-        System.out.println(String.format("%-25s %-25s %-15s", "Capital", "Country", "Population"));
+        System.out.printf("%-25s %-25s %-15s%n", "Capital", "Country", "Population");
         for (Country ctry : countries) {
             String ctry_String = String.format("%-25s %-25s %-15d", ctry.capital, ctry.name, ctry.population);
             System.out.println(ctry_String);
+        }
+    }
+
+    /**
+     * Prints a list of cities.
+     *
+     * @param populations The list of cities to print.
+     */
+    // Display population report
+    public void displayPopulation(ArrayList<Population> populations) {
+        System.out.printf("%-25s %-20s %-20s %-20s%n", "Name", "Total Population", "Population in Cities(including %)", "Population not in Cities(including %)");
+        for (Population pop : populations) {
+            double percentageInCities = ((double) pop.populationInCities / pop.totalPopulation) * 100.0;
+            double percentageNotInCities = ((double) pop.populationNotInCities / pop.totalPopulation) * 100.0;
+            String formattedString = String.format("%-25s %-20d   %-20d %.2f%%        %-20d %.2f%%",
+                    pop.name, pop.totalPopulation, pop.populationInCities, percentageInCities, pop.populationNotInCities, percentageNotInCities);
+            System.out.println(formattedString);
         }
     }
 

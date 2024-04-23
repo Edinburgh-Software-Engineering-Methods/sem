@@ -194,4 +194,34 @@ public class RegionQuery {
         }
     }
 
+    // Get population data for all regions
+    public ArrayList<Population> getPopulationByRegion() {
+        try {
+            Statement stmt = con.createStatement();
+            String strSelect =
+                    "SELECT c.Region, SUM(c.Population) AS TotalPopulation, " +
+                    "SUM(ci.Population) AS PopulationInCities, " +
+                    "(SUM(c.Population) - SUM(ci.Population)) AS PopulationNotInCities " +
+                    "FROM country c " +
+                    "LEFT JOIN city ci ON c.Capital = ci.ID " +
+                    "GROUP BY c.Region";
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<Population> populationList = new ArrayList<>();
+            while (rset.next()) {
+                Population population = new Population(
+                        rset.getString("Region"),
+                        rset.getInt("PopulationInCities"),
+                        rset.getInt("PopulationNotInCities"),
+                        rset.getInt("TotalPopulation")
+                );
+                populationList.add(population);
+            }
+            return populationList;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get population distribution by regions");
+            return null;
+        }
+    }
+
 }

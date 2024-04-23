@@ -110,7 +110,8 @@ public class ContinentQuery {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect = "SELECT ci.Name AS City, c.Name AS Country, ci.District, ci.Population " +
+            String strSelect =
+                    "SELECT ci.Name AS City, c.Name AS Country, ci.District, ci.Population " +
                     "FROM city ci " +
                     "JOIN country c ON ci.CountryCode = c.Code " +
                     "WHERE c.Continent = '" + continent + "' " +
@@ -191,6 +192,36 @@ public class ContinentQuery {
             return null;
         }
     }
+
+    public ArrayList<Population> getPopulationByContinent() {
+        try {
+            Statement stmt = con.createStatement();
+            String strSelect =
+                    "SELECT c.Continent, SUM(c.Population) AS TotalPopulation, " +
+                    "SUM(ci.Population) AS PopulationInCities, " +
+                    "(SUM(c.Population) - SUM(ci.Population)) AS PopulationNotInCities " +
+                    "FROM country c " +
+                    "LEFT JOIN city ci ON c.Capital = ci.ID " +
+                    "GROUP BY c.Continent";
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<Population> populationList = new ArrayList<>();
+            while (rset.next()) {
+                Population population = new Population(
+                        rset.getString("Continent"),
+                        rset.getLong("PopulationInCities"),
+                        rset.getLong("PopulationNotInCities"),
+                        rset.getLong("TotalPopulation")
+                );
+                populationList.add(population);
+            }
+            return populationList;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get population distribution by continents");
+            return null;
+        }
+    }
+
 }
 
 

@@ -122,6 +122,21 @@ public class AppIntegrationTest {
     void testTopCapitalCitiesInRegion (){
         app.TopCapitalCitiesInRegion("North America", 3);
     }
+
+    @Test
+    void testPopulationInContinents () {
+        app.PopulationInContinents();
+    }
+
+    @Test
+    void testPopulationInRegions () {
+        app.PopulationInRegions();
+    }
+
+    @Test
+    void testPopulationInCountries () {
+        app.PopulationInCountries();
+    }
 }
 
 
