@@ -21,5 +21,9 @@
 | 19  | As an organization manager, I want to produce a report of all the capital cities in a region organized by largest to smallest so that I can analyze the regional capital cities. | Yes | <img src="images/issue19.PNG"> |
 | 20  | As an organization manager, I want to produce a report of the top N populated capital cities in the world where N is provided by me so that I can specify on the most populated capital cities in the world. | Yes | <img src="images/issue20.PNG"> |
 | 21  | As an organization manager, I want to produce a report of the top N populated capital cities in a continent where N is provided by me so that I can examine the most populated capital cities in a certain continent. | Yes | <img src="images/issue21.PNG"> |
-| 22  | As an organization manager, I want to produce a report of the top N populated capital cities in a region where N is provided by me so that I can identify the most populated capital cities within a specific region. | Yes | <img src="images/issue22.PNG"> |
+| 22  | As an organization manager, I want to produce a report of the top N populated capital cities in a region where N is provided by me so that I can identify the most populated capital cities within a specific region. | Yes | <img src="images/issue22.PNG"> | 
+| 23  | As an organization manager, I want to produce a report for the population of people, people living in cities, and people not living in cities in each continent so that population distribution of every continent can be examined. | Yes | <img src="images/issue23.PNG"> |
+| 24  | As an organization manager, I want to produce a report for the population of people, people living in cities, and people not living in cities in each region so that regional population analysis can be understood. | Yes | <img src="images/issue24.PNG"> |
+| 25  | As an organization manager, I want to produce a report for the population of people, people living in cities, and people not living in cities in each country so that population dynamics of every countries can be studied. | Yes | <img src="images/issue25.PNG"> |
+
 
