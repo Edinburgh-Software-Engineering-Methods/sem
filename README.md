@@ -7,8 +7,8 @@ This is file zero of this project.
 [![Releases](https://img.shields.io/github/release/seinlei/sem/all.svg?style=flat-square)](https://github.com/<github-username>/sem/releases)
 
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/seinlei/sem/main.yml?branch=develop)
+Develop Branch Status ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/seinlei/sem/main.yml?branch=develop)
 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/AngeloCocom1/sem/main.yml?branch=master)
+Master Branch status  ![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/AngeloCocom1/sem/main.yml?branch=master)
 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/AngeloCocom1/sem/main.yml?branch=develop)
+
