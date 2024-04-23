@@ -1,9 +1,9 @@
 ---
 name: Bug report
-about: Create a report to help us improve on Application
-title: ''
-labels: ''
-assignees: ''
+about: Create a report to help us improve on the Application
+title: "[BUG]"
+labels: bug, documentation, duplicate, enhancement
+assignees: Andrew-Charlesworth, seinlei, geekarp, MunaSamaha, AngeloCocom1
 
 ---
 
