@@ -9,6 +9,6 @@ This is file zero of this project.
 
 *Develop Branch Status ![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/seinlei/sem/main.yml?branch=develop)
 
-*Master Branch status  ![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/AngeloCocom1/sem/main.yml?branch=master)
+*Master Branch status  ![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/seinlei/sem/main.yml?branch=master)
 
 
