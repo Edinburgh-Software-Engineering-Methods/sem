@@ -9,6 +9,6 @@ This is file zero of this project.
 
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/seinlei/sem/main.yml?branch=develop)
 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/angelococom1/sem/main.yml?branch=<master>)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/AngeloCocom1/sem/main.yml?branch=master)
 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/angelococom1/sem/main.yml?branch=<develop>)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/AngeloCocom1/sem/main.yml?branch=develop)
