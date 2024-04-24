@@ -97,4 +97,19 @@ public class CountryQuery {
             return null;
         }
     }
+
+    public long getCountryPopulation(String country) {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT Population FROM country WHERE Name = '" + country + "'");
+            if (rs.next()) {
+                return rs.getLong("Population");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get population of" + country);
+        }
+        return -1;
+    }
 }

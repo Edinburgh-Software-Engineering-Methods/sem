@@ -17,10 +17,23 @@ public class App {
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 
+        // Language Report
+        a.languageReport();
+
+        // Get population of world, continent, region, country and city
+
+        a.TotalPopulationInWorld();
+        a.TotalPopulationOfContinent("Asia");
+        a.TotalPopulationOfRegion("North America");
+        a.TotalPopulationOfDistrict("California");
+        a.TotalPopulationOfCountry("China");
+        a.TotalPopulationOfCity("New York");
+
+
         // Get population analysis by each continent, region and country
-        a.PopulationInContinents();
+       /* a.PopulationInContinents();
         a.PopulationInRegions();
-        a.PopulationInCountries();
+        a.PopulationInCountries(); */
 
         //Get Top N Capital Cities in world, continent and region
        /* a.TopCapitalCitiesInWorld(4);
@@ -32,14 +45,12 @@ public class App {
         a.CapitalCitiesInContinent("Asia");
         a.CapitalCitiesInRegion("North America");*/
 
-
         // Get Top N cities in world, continent, region, country and district
        /* a.TopCitiesInWorld(5);
         a.TopCitiesInContinent("Europe", 3);
         a.TopCitiesInRegion("South East Asia", 5);
         a.TopCitiesInCountry("United States", 5);
         a.TopCitiesInDistrict("Florida", 6);*/
-
 
         //Get Cities by Population in World, Continent and Region, District and Country
         /* a.CitiesInWorld();
@@ -48,13 +59,10 @@ public class App {
         a.CitiesInCountry("Myanmar");
         a.CitiesInDistrict("Texas"); */
 
-
-
         // Get topN countries in World, Continent and Region
         /* a.TopCountriesInWorld(5);
         a.TopCountriesByContinent("Asia" , 5);
         a.TopCountriesByRegion("North America", 5);*/
-
 
         // Get countries by population in world, continent and region
         /* a.CountriesInWorld();
@@ -302,6 +310,57 @@ public class App {
         displayPopulation(populationByCountry);
     }
 
+    public void TotalPopulationInWorld () {
+        WorldQuery worldQuery = new WorldQuery(con);
+        long population = worldQuery.getWorldPopulation();
+        System.out.println("Total Population in World: " + population);
+    }
+
+    public void TotalPopulationOfContinent (String continent) {
+        ContinentQuery continentQuery = new ContinentQuery(con);
+        long population = continentQuery.getContinentPopulation(continent);
+        System.out.println(("Total Population in Continent (" + continent + ") :" + population));
+    }
+
+    public void TotalPopulationOfRegion (String region) {
+        RegionQuery regionQuery = new RegionQuery(con);
+        long population = regionQuery.getRegionPopulation(region);
+        System.out.println(("Total Population in Region (" + region + ") :" + population));
+    }
+
+    public void TotalPopulationOfDistrict (String district) {
+        DistrictQuery districtQuery = new DistrictQuery(con);
+        long population = districtQuery.getDistrictPopulation(district);
+        System.out.println(("Total Population in District (" + district + ") :" + population));
+    }
+
+    public void TotalPopulationOfCountry (String country) {
+        CountryQuery countryQuery = new CountryQuery(con);
+        long population = countryQuery.getCountryPopulation(country);
+        System.out.println(("Total Population in Country (" + country + ") :" + population));
+    }
+
+    public void TotalPopulationOfCity ( String city) {
+        WorldQuery worldQuery = new WorldQuery(con);
+        long population = worldQuery.getCityPopulation(city);
+        System.out.println(("Total Population in City (" + city + ") :" + population));
+    }
+
+    public void languageReport() {
+        WorldQuery worldQuery = new WorldQuery(con);
+        ArrayList<Population> languagePopulation = worldQuery.getLanguageReport();
+        long worldPopulation = worldQuery.getWorldPopulation();
+
+        System.out.println("Language Report:");
+        System.out.println("---------------------------------------");
+        System.out.printf("%-15s %-15s %-15s%n", "Language", "Total Population", "Percentage");
+        System.out.println("---------------------------------------");
+
+        for (Population language : languagePopulation) {
+            double percentage = ((double) language.totalPopulation / worldPopulation) * 100;
+            System.out.printf("%-15s %-15d %.2f%%%n", language.name, language.totalPopulation, percentage);
+        }
+    }
     /**
      * Prints a list of countries.
      *

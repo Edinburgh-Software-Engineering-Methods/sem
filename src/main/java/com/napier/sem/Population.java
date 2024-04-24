@@ -13,11 +13,17 @@ public class Population {
     // Total population
     public long totalPopulation;
 
-    // Constructor for continent-level population
+    // Constructor for population analysis
     public Population(String name, long populationInCities, long populationNotInCities, long totalPopulation) {
         this.name = name;
         this.populationInCities = populationInCities;
         this.populationNotInCities = populationNotInCities;
+        this.totalPopulation = totalPopulation;
+    }
+
+    // Constructor for language-level population
+    public Population(String name, long totalPopulation) {
+        this.name = name;
         this.totalPopulation = totalPopulation;
     }
 

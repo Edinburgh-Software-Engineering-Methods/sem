@@ -222,6 +222,21 @@ public class ContinentQuery {
         }
     }
 
+    public long getContinentPopulation(String continent) {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT SUM(Population) AS ContinentPopulation FROM country WHERE Continent = '" + continent + "'");
+            if (rs.next()) {
+                return rs.getLong("ContinentPopulation");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get population of" + continent);
+        }
+        return -1;
+    }
+
 }
 
 

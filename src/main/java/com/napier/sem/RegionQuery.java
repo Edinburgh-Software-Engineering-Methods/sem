@@ -224,4 +224,19 @@ public class RegionQuery {
         }
     }
 
+    public long getRegionPopulation(String region) {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT SUM(Population) AS RegionPopulation FROM country WHERE Region = '" + region + "'");
+            if (rs.next()) {
+                return rs.getLong("RegionPopulation");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get population of" + region);
+        }
+        return -1;
+    }
+
 }

@@ -68,5 +68,21 @@ public class DistrictQuery {
         }
     }
 
+    public long getDistrictPopulation(String district) {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT SUM(Population) AS DistrictPopulation FROM city WHERE District = '" + district + "'");
+            if (rs.next()) {
+                return rs.getLong("DistrictPopulation");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get population of" + district);
+        }
+        return -1;
+    }
+
+
 
 }

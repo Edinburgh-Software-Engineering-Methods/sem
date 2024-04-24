@@ -200,5 +200,64 @@ public class WorldQuery {
             return null;
         }
     }
+
+    public long getWorldPopulation() {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT SUM(Population) AS WorldPopulation FROM country");
+            if (rs.next()) {
+                return rs.getLong("WorldPopulation");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get populations of the world");
+        }
+        return -1;
+    }
+
+    public long getCityPopulation(String city) {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT Population FROM city WHERE Name = '" + city + "'");
+            if (rs.next()) {
+                return rs.getLong("Population");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get population of" + city);
+        }
+        return -1;
+    }
+
+    public ArrayList<Population> getLanguageReport() {
+        try {
+            Statement stmt = con.createStatement();
+            String strSelect =
+                    "SELECT Language, SUM(Population) AS TotalPopulation " +
+                            "FROM countrylanguage cl " +
+                            "JOIN country c ON cl.CountryCode = c.Code " +
+                            "GROUP BY Language " +
+                            "HAVING Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic') " +
+                            "ORDER BY TotalPopulation DESC";
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<Population> languageReport = new ArrayList<>();
+            while (rset.next()) {
+                Population population = new Population(
+                        rset.getString("Language"),
+                        rset.getLong("TotalPopulation")
+            );
+                languageReport.add(population);
+            }
+            return languageReport;
+        }
+           catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println("Failed to get population by languages");
+                return null;
+            }
+    }
+
 }
 

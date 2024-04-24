@@ -137,6 +137,40 @@ public class AppIntegrationTest {
     void testPopulationInCountries () {
         app.PopulationInCountries();
     }
+
+    @Test
+    void testTotalPopulationInWorld () {
+        app.TotalPopulationInWorld();
+    }
+
+    @Test
+    void testTotalPopulationInContinent () {
+        app.TotalPopulationOfContinent("Europe");
+    }
+
+    @Test
+    void testTotalPopulationInRegion () {
+        app.TotalPopulationOfRegion("South America");
+    }
+
+    @Test
+    void testTotalPopulationInDistict () {
+        app.TotalPopulationOfDistrict("England");
+    }
+    @Test
+    void testTotalPopulationInCountry () {
+        app.TotalPopulationOfCountry("United States");
+    }
+
+    @Test
+    void testTotalPopulationInCity () {
+        app.TotalPopulationOfCity("London");
+    }
+
+    @Test
+    void testLanguageReport () {
+        app.languageReport();
+    }
 }
 
 
