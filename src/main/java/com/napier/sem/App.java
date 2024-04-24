@@ -31,43 +31,43 @@ public class App {
 
 
         // Get population analysis by each continent, region and country
-       /* a.PopulationInContinents();
+        a.PopulationInContinents();
         a.PopulationInRegions();
-        a.PopulationInCountries(); */
+        a.PopulationInCountries();
 
         //Get Top N Capital Cities in world, continent and region
-       /* a.TopCapitalCitiesInWorld(4);
+        a.TopCapitalCitiesInWorld(4);
         a.TopCapitalCitiesInContinent("Africa" , 5);
-        a.TopCapitalCitiesInRegion("Middle East", 3);*/
+        a.TopCapitalCitiesInRegion("Middle East", 3);
 
         // Get Capital Cities in world, continent and region
-       /*  a.CapitalCitiesInWorld();
+        a.CapitalCitiesInWorld();
         a.CapitalCitiesInContinent("Asia");
-        a.CapitalCitiesInRegion("North America");*/
+        a.CapitalCitiesInRegion("North America");
 
         // Get Top N cities in world, continent, region, country and district
-       /* a.TopCitiesInWorld(5);
+        a.TopCitiesInWorld(5);
         a.TopCitiesInContinent("Europe", 3);
         a.TopCitiesInRegion("South East Asia", 5);
         a.TopCitiesInCountry("United States", 5);
-        a.TopCitiesInDistrict("Florida", 6);*/
+        a.TopCitiesInDistrict("Florida", 6);
 
         //Get Cities by Population in World, Continent and Region, District and Country
-        /* a.CitiesInWorld();
+        a.CitiesInWorld();
         a.CitiesInContinent("Africa");
         a.CitiesInRegion("South America");
         a.CitiesInCountry("Myanmar");
-        a.CitiesInDistrict("Texas"); */
+        a.CitiesInDistrict("Texas");
 
         // Get topN countries in World, Continent and Region
-        /* a.TopCountriesInWorld(5);
+        a.TopCountriesInWorld(5);
         a.TopCountriesByContinent("Asia" , 5);
-        a.TopCountriesByRegion("North America", 5);*/
+        a.TopCountriesByRegion("North America", 5);
 
         // Get countries by population in world, continent and region
-        /* a.CountriesInWorld();
+        a.CountriesInWorld();
         a.CountriesByContinent("Asia");
-        a.CountriesByRegion("North America"); */
+        a.CountriesByRegion("North America");
 
 
         // Disconnect from database
