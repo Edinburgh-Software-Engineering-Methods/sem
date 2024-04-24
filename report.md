@@ -25,5 +25,11 @@
 | 23  | As an organization manager, I want to produce a report for the population of people, people living in cities, and people not living in cities in each continent so that population distribution of every continent can be examined. | Yes | <img src="images/issue23.PNG"> |
 | 24  | As an organization manager, I want to produce a report for the population of people, people living in cities, and people not living in cities in each region so that regional population analysis can be understood. | Yes | <img src="images/issue24.PNG"> |
 | 25  | As an organization manager, I want to produce a report for the population of people, people living in cities, and people not living in cities in each country so that population dynamics of every countries can be studied. | Yes | <img src="images/issue25.PNG"> |
-
+| 26  | As an organization manager, I want to access the population of the world so that I can have an overview of the global population. | Yes | <img src="images/issue26.PNG"> |
+| 27  | As an organization manager, I want to access the population of a continent so that I can understand the population within a continent. | Yes | <img src="images/issue27.PNG"> |
+| 28  | As an organization manager, I want to access the population of a region so that I can identify the population dynamics within a specific region. | Yes | <img src="images/issue28.PNG"> |
+| 29  | As an organization manager, I want to access the population of a country so that I can understand the population results of a specific country. | Yes | <img src="images/issue29.PNG"> |
+| 30  | As an organization manager, I want to access the population of a district so that I can examine the population distribution within a district. | Yes | <img src="images/issue30.PNG"> |
+| 31  | As an organization manager, I want to access the population of a city so that I can distribute the population demographics of a certain city. | Yes | <img src="images/issue31.PNG"> |
+| 32  | As an organization manager, I want to produce a report for the number of people who speak Chinese, English, Hindi, Spanish, and Arabic from greatest number to smallest including the percentage of the world population so that I can gain insights of global language distributions. | Yes | <img src="images/issue32.PNG"> |
 
