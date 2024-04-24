@@ -19,6 +19,7 @@ public class Country {
     //capitals of the country
     public String capital;
 
+    // Constructor to use in Queries
     public Country(String code, String name, String continent, String region, int population, String capital) {
         this.code = code;
         this.name = name;
@@ -28,6 +29,7 @@ public class Country {
         this.capital = capital;
     }
 
+    // Constructor to use in Queries
     public Country(String name, int population, String capital) {
         this.name = name;
         this.capital = capital;

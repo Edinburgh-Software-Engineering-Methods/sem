@@ -19,7 +19,7 @@ public class ContinentQuery {
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<Country> countries = new ArrayList<>();
             while (rset.next()) {
-                // Create a new instance of Country using the constructor with arguments
+                // Create a new instance of Country using the constructor from Country
                 Country ctry = new Country(
                         rset.getString("Code"),
                         rset.getString("Name"),
@@ -56,7 +56,7 @@ public class ContinentQuery {
             // Extract country information
             ArrayList<Country> topCountries = new ArrayList<>();
             while (rset.next()) {
-                // Create a new instance of Country using the constructor with arguments
+                // Create a new instance of Country using the constructor from Country
                 Country ctry = new Country(
                         rset.getString("Code"),
                         rset.getString("Name"),
@@ -88,6 +88,7 @@ public class ContinentQuery {
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<City> cities = new ArrayList<>();
             while (rset.next()) {
+                // Create a new instance of City using the constructor from City
                 City cityData = new City(
                         rset.getString("City"),
                         rset.getString("Country"),
@@ -122,6 +123,7 @@ public class ContinentQuery {
             // Extract city information
             ArrayList<City> cities = new ArrayList<>();
             while (rset.next()) {
+                // Create a new instance of City using the constructor from City
                 City cityData = new City(
                         rset.getString("City"),
                         rset.getString("Country"),
@@ -140,7 +142,9 @@ public class ContinentQuery {
 
     public ArrayList<Country> getCapitalCitiesByContinent(String continent) {
         try {
+            // Create an SQL statement
             Statement stmt = con.createStatement();
+            // Create string for SQL statement
             String strSelect = "SELECT c.Name, c.Population, ci.Name AS Capital " +
                     "FROM country c " +
                     "LEFT JOIN city ci ON c.Capital = ci.ID " +
@@ -149,7 +153,7 @@ public class ContinentQuery {
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<Country> countries = new ArrayList<>();
             while (rset.next()) {
-                // Create a new instance of Country using the constructor with arguments
+                // Create a new instance of Country using the constructor from Country
                 Country ctry = new Country(
                         rset.getString("Name"),
                         rset.getInt("Population"),
@@ -167,7 +171,9 @@ public class ContinentQuery {
 
     public ArrayList<Country> getTopCapitalCitiesByContinent(String continent, int N) {
         try {
+            // Create an SQL statement
             Statement stmt = con.createStatement();
+            // Create string for SQL statement
             String strSelect = "SELECT c.Name, c.Population, ci.Name AS Capital " +
                     "FROM country c " +
                     "LEFT JOIN city ci ON c.Capital = ci.ID " +
@@ -177,7 +183,7 @@ public class ContinentQuery {
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<Country> countries = new ArrayList<>();
             while (rset.next()) {
-                // Create a new instance of Country using the constructor with arguments
+                // Create a new instance of Country using the constructor from Country
                 Country ctry = new Country(
                         rset.getString("Name"),
                         rset.getInt("Population"),
@@ -195,7 +201,9 @@ public class ContinentQuery {
 
     public ArrayList<Population> getPopulationByContinent() {
         try {
+            // Create an SQL statement
             Statement stmt = con.createStatement();
+            // Create string for SQL statement
             String strSelect =
                     "SELECT c.Continent, SUM(c.Population) AS TotalPopulation, " +
                     "SUM(ci.Population) AS PopulationInCities, " +

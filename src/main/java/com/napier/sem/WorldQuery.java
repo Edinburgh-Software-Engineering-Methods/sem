@@ -61,7 +61,7 @@ public class WorldQuery {
             // Extract country information
             ArrayList<Country> topCountries = new ArrayList<>();
             while (rset.next()) {
-                // Create a new instance of Country using the constructor with arguments
+                // Create a new instance of Country from Country Class
                 Country ctry = new Country(
                         rset.getString("Code"),
                         rset.getString("Name"),
@@ -120,7 +120,7 @@ public class WorldQuery {
                             "FROM city ci " +
                             "JOIN country c ON ci.CountryCode = c.Code " +
                             "ORDER BY ci.Population DESC " +
-                            "LIMIT " + N;
+                            "LIMIT " + N; // order by population and use top N input
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<City> cities = new ArrayList<>();
             while (rset.next()) {
@@ -155,7 +155,7 @@ public class WorldQuery {
             // Extract country information
             ArrayList<Country> countries = new ArrayList<>();
             while (rset.next()) {
-                // Create a new instance of Country using the constructor with arguments
+                // Create a new instance of Country from Country Class
                 Country ctry = new Country(
                         rset.getString("Name"),
                         rset.getInt("Population"),
@@ -185,7 +185,7 @@ public class WorldQuery {
             // Extract country information
             ArrayList<Country> countries = new ArrayList<>();
             while (rset.next()) {
-                // Create a new instance of Country using the constructor with arguments
+                // Create a new instance of Country using the constructor from Country class
                 Country ctry = new Country(
                         rset.getString("Name"),
                         rset.getInt("Population"),
@@ -233,7 +233,9 @@ public class WorldQuery {
 
     public ArrayList<Population> getLanguageReport() {
         try {
+            // Create an SQL statement
             Statement stmt = con.createStatement();
+            // Create string for SQL statement
             String strSelect =
                     "SELECT Language, SUM(Population) AS TotalPopulation " +
                             "FROM countrylanguage cl " +

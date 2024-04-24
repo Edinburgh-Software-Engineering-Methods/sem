@@ -7,12 +7,14 @@ public class AppIntegrationTest {
 
     static App app;
 
+    // create new app and connect the database
     @BeforeAll
     static void init() {
         app = new App();
         app.connect("localhost:33060", 30000);
     }
 
+    // test for 32 issues
     @Test
     void testCountriesInWorld() {
         app.CountriesInWorld();

@@ -42,6 +42,7 @@ public class DistrictQuery {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
+            // Create string for SQL statement
             String strSelect = "SELECT ci.Name AS City, c.Name AS Country, ci.District, ci.Population " +
                     "FROM city ci " +
                     "JOIN country c ON ci.CountryCode = c.Code " +

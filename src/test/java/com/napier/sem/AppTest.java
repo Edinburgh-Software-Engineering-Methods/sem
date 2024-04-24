@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class AppTest {
 
+    // testing display methods from App
     @Test
     public void testDisplayCity() {
         // Create sample city list
@@ -50,6 +51,7 @@ public class AppTest {
         populations.add(new Population ("Asia", 1908773, 24565376, 26474149));
         populations.add(new Population ("North America", 322773, 67565376, 57888149));
 
+        // Call the method
         App app = new App();
         app.displayPopulation(populations);
     }

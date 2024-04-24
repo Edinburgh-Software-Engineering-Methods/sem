@@ -21,7 +21,7 @@ public class Population {
         this.totalPopulation = totalPopulation;
     }
 
-    // Constructor for language-level population
+    // Constructor for language population
     public Population(String name, long totalPopulation) {
         this.name = name;
         this.totalPopulation = totalPopulation;

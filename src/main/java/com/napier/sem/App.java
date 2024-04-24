@@ -390,7 +390,7 @@ public class App {
     /**
      * Prints a list of cities.
      *
-     * @param countries The list of cities to print.
+     * @param countries The list of countries to print.
      */
     public void displayCapitalCity(ArrayList<Country> countries) {
         System.out.printf("%-25s %-25s %-15s%n", "Capital", "Country", "Population");
@@ -403,7 +403,7 @@ public class App {
     /**
      * Prints a list of cities.
      *
-     * @param populations The list of cities to print.
+     * @param populations The list of populations to print.
      */
     // Display population report
     public void displayPopulation(ArrayList<Population> populations) {

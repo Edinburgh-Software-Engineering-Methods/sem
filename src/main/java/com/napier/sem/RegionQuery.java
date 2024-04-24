@@ -11,7 +11,9 @@ public class RegionQuery {
 
     public ArrayList<Country> getCountriesByRegion(String region) {
         try {
+            // Create an SQL statement
             Statement stmt = con.createStatement();
+            // Create string for SQL statement
             String strSelect = "SELECT c.Code, c.Name, c.Continent, c.Region, c.Population, ci.Name AS Capital " +
                     "FROM country c " +
                     "LEFT JOIN city ci ON c.Capital = ci.ID " +
@@ -139,7 +141,9 @@ public class RegionQuery {
 
     public ArrayList<Country> getCapitalCitiesByRegion(String region) {
         try {
+            // Create an SQL statement
             Statement stmt = con.createStatement();
+            // Create string for SQL statement
             String strSelect =
                     "SELECT c.Name, c.Population, ci.Name AS Capital " +
                     "FROM country c " +
@@ -167,7 +171,9 @@ public class RegionQuery {
 
     public ArrayList<Country> getTopCapitalCitiesByRegion(String region, int N) {
         try {
+            // Create an SQL statement
             Statement stmt = con.createStatement();
+            // Create string for SQL statement
             String strSelect =
                     "SELECT c.Name, c.Population, ci.Name AS Capital " +
                             "FROM country c " +
@@ -197,7 +203,9 @@ public class RegionQuery {
     // Get population data for all regions
     public ArrayList<Population> getPopulationByRegion() {
         try {
+            // Create an SQL statement
             Statement stmt = con.createStatement();
+            // Create string for SQL statement
             String strSelect =
                     "SELECT c.Region, SUM(c.Population) AS TotalPopulation, " +
                     "SUM(ci.Population) AS PopulationInCities, " +

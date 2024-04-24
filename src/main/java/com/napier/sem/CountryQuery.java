@@ -42,6 +42,7 @@ public class CountryQuery {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
+            // Create string for SQL statement
             String strSelect = "SELECT ci.Name AS City, c.Name AS Country, ci.District, ci.Population " +
                     "FROM city ci " +
                     "JOIN country c ON ci.CountryCode = c.Code " +
@@ -71,7 +72,9 @@ public class CountryQuery {
     // Get population data for all countries
     public ArrayList<Population> getPopulationByCountry() {
         try {
+            // Create an SQL statement
             Statement stmt = con.createStatement();
+            // Create string for SQL statement
             String strSelect =
                     "SELECT c.Name, SUM(c.Population) AS TotalPopulation, " +
                     "SUM(ci.Population) AS PopulationInCities, " +

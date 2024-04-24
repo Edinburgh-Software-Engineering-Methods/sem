@@ -14,7 +14,7 @@ public class City {
         // Population of the city
         public int population;
 
-        // Constructor with arguments
+        // Constructor to use in Queries
         public City(String name, String country, String district, int population) {
                 this.name = name;
                 this.country = country;
